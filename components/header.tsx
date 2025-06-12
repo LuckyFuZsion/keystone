@@ -95,7 +95,7 @@ export default function Header() {
 
     // Create active link styles
     quickApply(
-      ".nav-link.active { color: #0d9488 !important; font-weight: 600; } .nav-link.active::after { width: 100% !important; background: #0d9488; }",
+      ".nav-link.active { color: #14b8a6 !important; font-weight: 600; } .nav-link.active::after { width: 100% !important; background: #14b8a6; }",
       (rule) => rule,
       "style",
       {
@@ -107,7 +107,7 @@ export default function Header() {
 
     // Create hover effect styles
     quickApply(
-      '.nav-link { position: relative; transition: all 0.3s ease; } .nav-link::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #0d9488; transition: width 0.3s ease; } .nav-link:hover::after { width: 100%; } .nav-link:hover { animation: navHover 0.3s ease; }',
+      '.nav-link { position: relative; transition: all 0.3s ease; } .nav-link::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #14b8a6; transition: width 0.3s ease; } .nav-link:hover::after { width: 100%; } .nav-link:hover { animation: navHover 0.3s ease; }',
       (rule) => rule,
       "style",
       {
@@ -172,7 +172,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm border-b z-50"
+      className="fixed top-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm shadow-sm border-b z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -217,7 +217,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="nav-link text-gray-600 hover:text-teal-600 font-medium uppercase tracking-wide text-sm transition-colors duration-200"
+                  className="nav-link text-white hover:text-teal-400 font-medium uppercase tracking-wide text-sm transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -252,7 +252,7 @@ export default function Header() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X className="w-6 h-6 text-gray-600" />
+                    <X className="w-6 h-6 text-white" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -262,7 +262,7 @@ export default function Header() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="w-6 h-6 text-gray-600" />
+                    <Menu className="w-6 h-6 text-white" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -277,7 +277,7 @@ export default function Header() {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="lg:hidden overflow-hidden bg-white border-t border-gray-200"
+                className="lg:hidden overflow-hidden bg-gray-900 border-t border-gray-700"
               >
                 <div className="py-4 space-y-4">
                   {navigationLinks.map((link, index) => (
@@ -291,7 +291,7 @@ export default function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`nav-link block text-gray-600 hover:text-teal-600 font-medium uppercase tracking-wide text-sm py-2 transition-colors duration-200 ${
+                        className={`nav-link block text-white hover:text-teal-400 font-medium uppercase tracking-wide text-sm py-2 transition-colors duration-200 ${
                           pathname === link.href ? "active" : ""
                         }`}
                         onClick={() => setIsMenuOpen(false)}

@@ -17,4 +17,4 @@ interface BookwhenCalendarWrapperProps {
 
 export default function BookwhenCalendarWrapper({ className }: BookwhenCalendarWrapperProps) {
   return <BookwhenCalendar className={className} />
-} 
+}
