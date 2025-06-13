@@ -8,13 +8,15 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
-import { useState, useRef } from "react"
+import BookwhenCalendarWrapper from "@/components/bookwhen-calendar-wrapper"
+import { useState, useRef, useEffect } from "react"
 
 export default function HomePage() {
   const [isPaused, setIsPaused] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
+  const autoResumeTimer = useRef<NodeJS.Timeout | null>(null)
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX
@@ -40,8 +42,37 @@ export default function HomePage() {
   }
 
   const handleTilePress = () => {
+    // Clear any existing timer
+    if (autoResumeTimer.current) {
+      clearTimeout(autoResumeTimer.current)
+    }
+
     setIsPaused(!isPaused)
+
+    // If pausing, set a timer to auto-resume after 5 seconds
+    if (!isPaused) {
+      autoResumeTimer.current = setTimeout(() => {
+        setIsPaused(false)
+      }, 5000) // Auto-resume after 5 seconds
+    }
   }
+
+  // Clear timer on component unmount
+  useEffect(() => {
+    return () => {
+      if (autoResumeTimer.current) {
+        clearTimeout(autoResumeTimer.current)
+      }
+    }
+  }, [])
+
+  // Clear timer when manually resuming
+  useEffect(() => {
+    if (!isPaused && autoResumeTimer.current) {
+      clearTimeout(autoResumeTimer.current)
+      autoResumeTimer.current = null
+    }
+  }, [isPaused])
 
   return (
     <div className="min-h-screen bg-white">
@@ -272,6 +303,117 @@ export default function HomePage() {
         </section>
       </AnimatedSection>
 
+      {/* Blue Light Card Discount Section */}
+      <AnimatedSection>
+        <section className="py-12 bg-gradient-to-r from-blue-50 to-indigo-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                className="bg-white rounded-lg shadow-lg border border-blue-100 overflow-hidden"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="relative">
+                  {/* Blue accent bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+
+                  <div className="p-8 md:p-12">
+                    <div className="flex flex-col md:flex-row items-center gap-8">
+                      {/* Blue Light Card Logo/Icon */}
+                      <motion.div
+                        className="flex-shrink-0"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                      >
+                        <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                          <svg className="w-10 h-10 md:w-12 md:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" />
+                            <path d="M10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="white" />
+                          </svg>
+                        </div>
+                      </motion.div>
+
+                      {/* Content */}
+                      <div className="flex-1 text-center md:text-left">
+                        <motion.div
+                          className="mb-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-3">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                            BLUE LIGHT CARD HOLDER
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-light text-gray-900 mb-2 tracking-wide">
+                            <span className="text-blue-600 font-medium">15% DISCOUNT</span> ON MASSAGE TREATMENTS
+                          </h3>
+                        </motion.div>
+
+                        <motion.p
+                          className="text-gray-600 leading-relaxed text-sm md:text-base mb-6"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.4 }}
+                        >
+                          We're proud to support our NHS workers, emergency services, and key workers with exclusive
+                          savings.
+                          <br />
+                          <span className="text-xs text-gray-500 mt-2 block italic">
+                            *Applicable to full hour sessions only. Valid Blue Light Card required at time of booking.
+                          </span>
+                        </motion.p>
+
+                        <motion.div
+                          className="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.5 }}
+                        >
+                          <Link href="/book">
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-sm font-medium tracking-wide transition-all duration-300 shadow-md">
+                                BOOK WITH DISCOUNT
+                              </Button>
+                            </motion.div>
+                          </Link>
+                          <Link href="/services">
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                              <Button
+                                variant="outline"
+                                className="border-blue-300 text-blue-700 hover:border-blue-600 hover:text-blue-900 px-6 py-3 text-sm font-medium tracking-wide"
+                              >
+                                VIEW MASSAGE SERVICES
+                              </Button>
+                            </motion.div>
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 right-4 opacity-10">
+                    <div className="w-32 h-32 border-2 border-blue-300 rounded-full"></div>
+                  </div>
+                  <div className="absolute bottom-4 left-4 opacity-10">
+                    <div className="w-16 h-16 border-2 border-blue-300 rounded-full"></div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* Services Grid */}
       <AnimatedSection>
         <section className="py-16 bg-white">
@@ -302,22 +444,21 @@ export default function HomePage() {
                     isPaused
                       ? {}
                       : {
-                          x: [0, -100 * 5],
+                          x: [0, -2400], // Move through one complete set of 5 services (280px + 16px gap) * 5 = 1480px, but using larger value for smoother infinite scroll
                         }
                   }
                   transition={
                     isPaused
                       ? {}
                       : {
-                          duration: 30,
+                          duration: 25,
                           repeat: Number.POSITIVE_INFINITY,
-                          repeatType: "loop",
                           ease: "linear",
-                          repeatDelay: 0,
+                          repeatType: "loop",
                         }
                   }
                   style={{
-                    width: "calc(280px * 10 + 16px * 9)", // Responsive width: 280px tiles + 16px gaps on mobile
+                    width: "calc(280px * 20 + 16px * 19)", // Increased width for more seamless infinite scroll
                     willChange: "transform",
                     transform: isPaused ? `translateX(-${currentIndex * (280 + 16)}px)` : undefined,
                   }}
@@ -499,9 +640,57 @@ export default function HomePage() {
         </section>
       </AnimatedSection>
 
-      {/* Studio Experience Section */}
+      {/* Reformer Pilates Class Schedule */}
       <AnimatedSection>
         <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <motion.div
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-wide">
+                  REFORMER PILATES CLASS SCHEDULE
+                </h2>
+                <motion.div
+                  className="w-24 h-px bg-gray-300 mx-auto mb-6"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 96 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+                <motion.p
+                  className="text-gray-600 leading-relaxed text-sm md:text-base max-w-3xl mx-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  Book your Reformer Pilates class directly through our online booking system. Select your preferred
+                  date and time from the available slots below.
+                </motion.p>
+              </motion.div>
+
+              <motion.div
+                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <BookwhenCalendarWrapper className="w-full" />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Studio Experience Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -539,7 +728,7 @@ export default function HomePage() {
 
                 {/* Experience Text */}
                 <motion.div
-                  className="bg-white p-8 border border-gray-200"
+                  className="bg-gray-50 p-8 border border-gray-200"
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
