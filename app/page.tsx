@@ -1,13 +1,48 @@
 "use client"
 
+import type React from "react"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
+import { useState, useRef } from "react"
 
 export default function HomePage() {
+  const [isPaused, setIsPaused] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      setCurrentIndex((prev) => (prev + 1) % 5)
+    }
+    if (isRightSwipe) {
+      setCurrentIndex((prev) => (prev - 1 + 5) % 5)
+    }
+  }
+
+  const handleTilePress = () => {
+    setIsPaused(!isPaused)
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Mobile Welcome Section - Only visible on mobile */}
@@ -262,20 +297,43 @@ export default function HomePage() {
               {/* Services Carousel */}
               <div className="relative overflow-hidden">
                 <motion.div
-                  className="flex gap-8"
-                  animate={{
-                    x: [0, -100 * 5], // Adjusted to match exact number of services
+                  className="flex gap-4 md:gap-8"
+                  animate={
+                    isPaused
+                      ? {}
+                      : {
+                          x: [0, -100 * 5],
+                        }
+                  }
+                  transition={
+                    isPaused
+                      ? {}
+                      : {
+                          duration: 30,
+                          repeat: Number.POSITIVE_INFINITY,
+                          repeatType: "loop",
+                          ease: "linear",
+                          repeatDelay: 0,
+                        }
+                  }
+                  style={{
+                    width: "calc(280px * 10 + 16px * 9)", // Responsive width: 280px tiles + 16px gaps on mobile
+                    willChange: "transform",
+                    transform: isPaused ? `translateX(-${currentIndex * (280 + 16)}px)` : undefined,
                   }}
-                  transition={{
-                    duration: 30, // Increased duration for smoother movement
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop",
-                    ease: "linear",
-                    repeatDelay: 0, // Ensure no delay between loops
-                  }}
-                  style={{ 
-                    width: "calc(400px * 10)", // Adjusted width for smoother transition
-                    willChange: "transform" // Optimize for animation performance
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  drag="x"
+                  dragConstraints={{ left: -(280 + 16) * 4, right: 0 }}
+                  dragElastic={0.1}
+                  onDragEnd={(event, info) => {
+                    const threshold = 50
+                    if (info.offset.x > threshold) {
+                      setCurrentIndex((prev) => Math.max(0, prev - 1))
+                    } else if (info.offset.x < -threshold) {
+                      setCurrentIndex((prev) => Math.min(4, prev + 1))
+                    }
                   }}
                 >
                   {/* First set of services */}
@@ -366,13 +424,14 @@ export default function HomePage() {
                     .map((service, index) => (
                       <motion.div
                         key={index}
-                        className="flex-shrink-0 w-80"
+                        className="flex-shrink-0 w-70 md:w-80"
                         whileHover={{ scale: 1.05, y: -10 }}
                         transition={{ duration: 0.3 }}
-                        style={{ 
+                        style={{
                           willChange: "transform", // Optimize hover animation
-                          backfaceVisibility: "hidden" // Prevent flickering
+                          backfaceVisibility: "hidden", // Prevent flickering
                         }}
+                        onClick={handleTilePress}
                       >
                         <div className="border-0 shadow-sm hover:shadow-lg transition-all duration-300 group overflow-hidden h-full">
                           <motion.div
@@ -426,6 +485,14 @@ export default function HomePage() {
                     }}
                   />
                 ))}
+              </div>
+              <div className="flex justify-center mt-4 md:hidden">
+                <button
+                  onClick={handleTilePress}
+                  className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                >
+                  {isPaused ? "Resume" : "Pause"} Carousel
+                </button>
               </div>
             </div>
           </div>

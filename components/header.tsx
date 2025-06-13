@@ -196,7 +196,7 @@ export default function Header() {
                   alt="Keystone Sports Therapy Logo - Teal diamond with white K"
                   width={162}
                   height={162}
-                  className=""
+                  className="filter brightness-0 invert"
                 />
               </motion.div>
             </Link>
