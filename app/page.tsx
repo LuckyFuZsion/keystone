@@ -320,24 +320,25 @@ export default function HomePage() {
                   {/* Blue accent bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
 
+                  <motion.div
+                    className="flex justify-center mb-8"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    <div className="w-60 h-15 md:w-72 md:h-15 bg-transparent flex items-center justify-center p-6">
+                      <img
+                        src="/images/blue-light-card-logo.png"
+                        alt="Blue Light Card Logo"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  </motion.div>
+
                   <div className="p-8 md:p-12">
                     <div className="flex flex-col md:flex-row items-center gap-8">
-                      {/* Blue Light Card Logo/Icon */}
-                      <motion.div
-                        className="flex-shrink-0"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                      >
-                        <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                          <svg className="w-10 h-10 md:w-12 md:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" />
-                            <path d="M10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="white" />
-                          </svg>
-                        </div>
-                      </motion.div>
-
+                      {/* Blue Light Card Logo */}
                       {/* Content */}
                       <div className="flex-1 text-center md:text-left">
                         <motion.div
@@ -439,12 +440,17 @@ export default function HomePage() {
               {/* Services Carousel */}
               <div className="relative overflow-hidden">
                 <motion.div
-                  className="flex gap-4 md:gap-8"
+                  className="flex gap-3 sm:gap-4 md:gap-8"
                   animate={
                     isPaused
                       ? {}
                       : {
-                          x: [0, -2400], // Move through one complete set of 5 services (280px + 16px gap) * 5 = 1480px, but using larger value for smoother infinite scroll
+                          x: [
+                            0,
+                            typeof window !== "undefined" && window.innerWidth < 768
+                              ? -(window.innerWidth - 48) * 10
+                              : -2400,
+                          ],
                         }
                   }
                   transition={
@@ -458,15 +464,23 @@ export default function HomePage() {
                         }
                   }
                   style={{
-                    width: "calc(280px * 20 + 16px * 19)", // Increased width for more seamless infinite scroll
+                    width: "calc((100vw - 3rem) * 20)", // Mobile responsive width
                     willChange: "transform",
-                    transform: isPaused ? `translateX(-${currentIndex * (280 + 16)}px)` : undefined,
+                    transform: isPaused
+                      ? `translateX(-${currentIndex * (typeof window !== "undefined" ? window.innerWidth - 48 : 280)}px)`
+                      : undefined,
                   }}
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                   drag="x"
-                  dragConstraints={{ left: -(280 + 16) * 4, right: 0 }}
+                  dragConstraints={{
+                    left:
+                      typeof window !== "undefined" && window.innerWidth < 768
+                        ? -((window.innerWidth - 48) * 4)
+                        : -(280 + 16) * 4,
+                    right: 0,
+                  }}
                   dragElastic={0.1}
                   onDragEnd={(event, info) => {
                     const threshold = 50
@@ -565,7 +579,7 @@ export default function HomePage() {
                     .map((service, index) => (
                       <motion.div
                         key={index}
-                        className="flex-shrink-0 w-70 md:w-80"
+                        className="flex-shrink-0 w-[calc(100vw-3rem)] sm:w-72 md:w-80"
                         whileHover={{ scale: 1.05, y: -10 }}
                         transition={{ duration: 0.3 }}
                         style={{
@@ -735,6 +749,7 @@ export default function HomePage() {
                   transition={{ duration: 0.6 }}
                   whileHover={{ scale: 1.02 }}
                 >
+                  {/* Decorative elements */}
                   <motion.h3
                     className="text-xl font-light text-gray-900 mb-4 tracking-wide"
                     initial={{ opacity: 0, y: 20 }}
