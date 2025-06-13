@@ -320,25 +320,25 @@ export default function HomePage() {
                   {/* Blue accent bar */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
 
-                  <motion.div
-                    className="flex justify-center mb-8"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                  >
-                    <div className="w-60 h-15 md:w-72 md:h-15 bg-transparent flex items-center justify-center p-6">
-                      <img
-                        src="/images/blue-light-card-logo.png"
-                        alt="Blue Light Card Logo"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </motion.div>
-
                   <div className="p-8 md:p-12">
                     <div className="flex flex-col md:flex-row items-center gap-8">
                       {/* Blue Light Card Logo */}
+                      <motion.div
+                        className="flex-shrink-0"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                      >
+                        <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-lg flex items-center justify-center shadow-lg border border-gray-200 p-2">
+                          <img
+                            src="/images/blue-light-card-logo.png"
+                            alt="Blue Light Card Logo"
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </motion.div>
+
                       {/* Content */}
                       <div className="flex-1 text-center md:text-left">
                         <motion.div
@@ -440,17 +440,12 @@ export default function HomePage() {
               {/* Services Carousel */}
               <div className="relative overflow-hidden">
                 <motion.div
-                  className="flex gap-3 sm:gap-4 md:gap-8"
+                  className="flex gap-4 md:gap-8"
                   animate={
                     isPaused
                       ? {}
                       : {
-                          x: [
-                            0,
-                            typeof window !== "undefined" && window.innerWidth < 768
-                              ? -(window.innerWidth - 48) * 10
-                              : -2400,
-                          ],
+                          x: [0, -2400], // Move through one complete set of 5 services (280px + 16px gap) * 5 = 1480px, but using larger value for smoother infinite scroll
                         }
                   }
                   transition={
@@ -464,23 +459,15 @@ export default function HomePage() {
                         }
                   }
                   style={{
-                    width: "calc((100vw - 3rem) * 20)", // Mobile responsive width
+                    width: "calc(280px * 20 + 16px * 19)", // Increased width for more seamless infinite scroll
                     willChange: "transform",
-                    transform: isPaused
-                      ? `translateX(-${currentIndex * (typeof window !== "undefined" ? window.innerWidth - 48 : 280)}px)`
-                      : undefined,
+                    transform: isPaused ? `translateX(-${currentIndex * (280 + 16)}px)` : undefined,
                   }}
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                   drag="x"
-                  dragConstraints={{
-                    left:
-                      typeof window !== "undefined" && window.innerWidth < 768
-                        ? -((window.innerWidth - 48) * 4)
-                        : -(280 + 16) * 4,
-                    right: 0,
-                  }}
+                  dragConstraints={{ left: -(280 + 16) * 4, right: 0 }}
                   dragElastic={0.1}
                   onDragEnd={(event, info) => {
                     const threshold = 50
@@ -579,7 +566,7 @@ export default function HomePage() {
                     .map((service, index) => (
                       <motion.div
                         key={index}
-                        className="flex-shrink-0 w-[calc(100vw-3rem)] sm:w-72 md:w-80"
+                        className="flex-shrink-0 w-70 md:w-80"
                         whileHover={{ scale: 1.05, y: -10 }}
                         transition={{ duration: 0.3 }}
                         style={{
@@ -749,7 +736,6 @@ export default function HomePage() {
                   transition={{ duration: 0.6 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* Decorative elements */}
                   <motion.h3
                     className="text-xl font-light text-gray-900 mb-4 tracking-wide"
                     initial={{ opacity: 0, y: 20 }}
