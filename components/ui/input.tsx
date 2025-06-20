@@ -4,6 +4,9 @@ import { cn } from "@/lib/utils"
 
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
   ({ className, type, ...props }, ref) => {
+    // Filter out browser-added attributes that cause hydration issues
+    const { fdprocessedid, ...filteredProps } = props as any
+    
     return (
       <input
         type={type}
@@ -12,7 +15,8 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           className
         )}
         ref={ref}
-        {...props}
+        suppressHydrationWarning
+        {...filteredProps}
       />
     )
   }

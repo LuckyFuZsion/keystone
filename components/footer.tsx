@@ -7,8 +7,11 @@ import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
 import Image from "next/image"
+import { useSuppressHydration } from "@/hooks/use-suppress-hydration"
 
 export default function Footer() {
+  const isClient = useSuppressHydration()
+
   return (
     <AnimatedSection>
       <footer className="py-16 bg-gray-900 text-white">
@@ -79,20 +82,22 @@ export default function Footer() {
               </Link>
             </motion.div>
 
-            <Link href="/contact">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-sm font-medium tracking-wide transition-all duration-300">
-                  BOOK CONSULTATION
-                </Button>
-              </motion.div>
-            </Link>
+            {isClient && (
+              <Link href="/contact">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-sm font-medium tracking-wide transition-all duration-300">
+                    BOOK CONSULTATION
+                  </Button>
+                </motion.div>
+              </Link>
+            )}
 
             {/* WebFuzsion Credit */}
             <motion.div

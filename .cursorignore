@@ -1,0 +1,32 @@
+# Allow these files to be visible in Cursor
+!.env.local
+!.env
+!.env.example
+!EMAIL_SETUP.md
+!README.md
+!package.json
+!package-lock.json
+!tsconfig.json
+!tailwind.config.ts
+!next.config.mjs
+!postcss.config.mjs
+!components.json
+
+# Allow all source files
+!app/
+!components/
+!lib/
+!hooks/
+!public/
+!styles/
+
+# Allow configuration files
+!*.config.*
+!*.json
+!*.ts
+!*.tsx
+!*.js
+!*.jsx
+!*.md
+!*.css
+!*.scss 

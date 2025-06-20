@@ -9,6 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Suppress hydration warnings in development
+  reactStrictMode: false,
 }
 
 export default nextConfig

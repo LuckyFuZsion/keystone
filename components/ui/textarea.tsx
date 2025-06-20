@@ -6,6 +6,9 @@ const Textarea = React.forwardRef<
   HTMLTextAreaElement,
   React.ComponentProps<"textarea">
 >(({ className, ...props }, ref) => {
+  // Filter out browser-added attributes that cause hydration issues
+  const { fdprocessedid, ...filteredProps } = props as any
+  
   return (
     <textarea
       className={cn(
@@ -13,7 +16,8 @@ const Textarea = React.forwardRef<
         className
       )}
       ref={ref}
-      {...props}
+      suppressHydrationWarning
+      {...filteredProps}
     />
   )
 })
