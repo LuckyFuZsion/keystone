@@ -9,4 +9,4 @@ const envContent = fs.readFileSync(envPath, 'utf8');
 console.log('=== ENV TEST ===');
 console.log('File content:');
 console.log(envContent);
-console.log('=== END TEST ==='); 
+console.log('=== END TEST ===');

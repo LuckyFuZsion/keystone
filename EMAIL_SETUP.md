@@ -8,10 +8,10 @@ The contact form now sends emails to `hello@kstherapyclinic.com` when someone su
 
 Edit the `.env.local` file and replace the placeholder values:
 
-```env
+\`\`\`env
 EMAIL_USER=your-actual-email@gmail.com
 EMAIL_PASS=your-app-password
-```
+\`\`\`
 
 ### 2. Gmail Setup (Recommended)
 
@@ -28,7 +28,7 @@ If using Gmail, you'll need to:
 
 You can change the email service in `lib/email.ts`:
 
-```typescript
+\`\`\`typescript
 const transporter = nodemailer.createTransport({
   service: 'outlook', // or 'yahoo', 'hotmail', etc.
   auth: {
@@ -36,7 +36,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 })
-```
+\`\`\`
 
 ## 📬 What Happens When Someone Submits the Form
 
@@ -68,4 +68,4 @@ const transporter = nodemailer.createTransport({
 
 ## 📋 Email Templates
 
-The email templates are located in `lib/email.ts` and can be customized to match your branding and messaging preferences. 
+The email templates are located in `lib/email.ts` and can be customized to match your branding and messaging preferences.

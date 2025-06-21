@@ -10,4 +10,4 @@ export function useSuppressHydration() {
   }, [])
 
   return isClient
-} 
+}
