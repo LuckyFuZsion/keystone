@@ -9,63 +9,51 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 // Form validation schema
 const newPatientFormSchema = z.object({
-  // Personal Information
-  firstName: z.string().min(2, "First name is required"),
-  lastName: z.string().min(2, "Last name is required"),
+  // Personal Details
+  name: z.string().min(2, "Name is required"),
   dateOfBirth: z.string().min(1, "Date of birth is required"),
-  gender: z.enum(["male", "female", "other", "prefer-not-to-say"], {
-    required_error: "Please select your gender",
-  }),
+  contactNumber: z.string().min(10, "Contact number is required"),
+  contactEmail: z.string().email("Please enter a valid email address"),
   address: z.string().min(5, "Address is required"),
-  postcode: z.string().min(5, "Postcode is required"),
-  phone: z.string().min(10, "Phone number is required"),
-  email: z.string().email("Please enter a valid email address"),
-  emergencyContactName: z.string().min(2, "Emergency contact name is required"),
-  emergencyContactPhone: z.string().min(10, "Emergency contact phone is required"),
-
-  // Medical History
-  currentMedication: z.string().optional(),
-  allergies: z.string().optional(),
-  medicalConditions: z.string().optional(),
-  previousSurgeries: z.string().optional(),
-
-  // Current Problem
-  problemDescription: z.string().min(10, "Please describe your current problem"),
-  painLevel: z.string().min(1, "Please rate your pain level"),
-  problemDuration: z.string().min(1, "Please specify how long you've had this problem"),
-  previousTreatment: z.string().optional(),
-
-  // Lifestyle
   occupation: z.string().min(2, "Occupation is required"),
-  exerciseFrequency: z.enum(["none", "1-2-times", "3-4-times", "5-plus-times"], {
-    required_error: "Please select your exercise frequency",
-  }),
-  exerciseType: z.string().optional(),
-  sleepQuality: z.enum(["excellent", "good", "fair", "poor"], {
-    required_error: "Please rate your sleep quality",
-  }),
-  stressLevel: z.enum(["low", "moderate", "high"], {
-    required_error: "Please rate your stress level",
-  }),
+  sportsHobbies: z.string().optional(),
+  emergencyContactName: z.string().min(2, "Emergency contact name is required"),
+  emergencyContactNumber: z.string().min(10, "Emergency contact number is required"),
 
-  // Goals and Expectations
-  treatmentGoals: z.string().min(10, "Please describe your treatment goals"),
+  // Medical Details
+  gpSurgery: z.string().min(2, "GP Surgery is required"),
+  gpSurgeryContact: z.string().min(10, "GP Surgery contact number is required"),
 
-  // Consent and Agreement
+  // Medical History Checkboxes
+  heartDisease: z.boolean().default(false),
+  faintDizziness: z.boolean().default(false),
+  hypertension: z.boolean().default(false),
+  diabetes: z.boolean().default(false),
+  pacemaker: z.boolean().default(false),
+  osteoporosis: z.boolean().default(false),
+  epilepsy: z.boolean().default(false),
+  asthma: z.boolean().default(false),
+  allergies: z.boolean().default(false),
+  pregnant: z.boolean().default(false),
+  smoker: z.boolean().default(false),
+  cancer: z.boolean().default(false),
+  surgeries: z.boolean().default(false),
+  medications: z.boolean().default(false),
+  bleedingDisorders: z.boolean().default(false),
+
+  // Additional Information
+  otherRelevantInfo: z.string().optional(),
+
+  // Consent
   consentTreatment: z.boolean().refine((val) => val === true, {
-    message: "You must consent to treatment",
+    message: "You must accept the conditions to proceed",
   }),
-  consentDataProcessing: z.boolean().refine((val) => val === true, {
-    message: "You must consent to data processing",
-  }),
-  consentMarketing: z.boolean().optional(),
 })
 
 type NewPatientFormData = z.infer<typeof newPatientFormSchema>
@@ -77,29 +65,34 @@ export default function NewPatientPage() {
   const form = useForm<NewPatientFormData>({
     resolver: zodResolver(newPatientFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
       dateOfBirth: "",
+      contactNumber: "",
+      contactEmail: "",
       address: "",
-      postcode: "",
-      phone: "",
-      email: "",
-      emergencyContactName: "",
-      emergencyContactPhone: "",
-      currentMedication: "",
-      allergies: "",
-      medicalConditions: "",
-      previousSurgeries: "",
-      problemDescription: "",
-      painLevel: "",
-      problemDuration: "",
-      previousTreatment: "",
       occupation: "",
-      exerciseType: "",
-      treatmentGoals: "",
+      sportsHobbies: "",
+      emergencyContactName: "",
+      emergencyContactNumber: "",
+      gpSurgery: "",
+      gpSurgeryContact: "",
+      heartDisease: false,
+      faintDizziness: false,
+      hypertension: false,
+      diabetes: false,
+      pacemaker: false,
+      osteoporosis: false,
+      epilepsy: false,
+      asthma: false,
+      allergies: false,
+      pregnant: false,
+      smoker: false,
+      cancer: false,
+      surgeries: false,
+      medications: false,
+      bleedingDisorders: false,
+      otherRelevantInfo: "",
       consentTreatment: false,
-      consentDataProcessing: false,
-      consentMarketing: false,
     },
   })
 
@@ -153,40 +146,25 @@ export default function NewPatientPage() {
             <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                  {/* Personal Information */}
+                  {/* Personal Details */}
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Personal Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Personal Details</h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="firstName"
+                        name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>First Name *</FormLabel>
+                            <FormLabel>Name *</FormLabel>
                             <FormControl>
-                              <Input placeholder="John" {...field} />
+                              <Input placeholder="Full Name" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-                      <FormField
-                        control={form.control}
-                        name="lastName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Last Name *</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
                         name="dateOfBirth"
@@ -200,25 +178,32 @@ export default function NewPatientPage() {
                           </FormItem>
                         )}
                       />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="gender"
+                        name="contactNumber"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Gender *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select gender" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="male">Male</SelectItem>
-                                <SelectItem value="female">Female</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
-                                <SelectItem value="prefer-not-to-say">Prefer not to say</SelectItem>
-                              </SelectContent>
-                            </Select>
+                            <FormLabel>Contact Number *</FormLabel>
+                            <FormControl>
+                              <Input type="tel" placeholder="07123 456789" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="contactEmail"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Contact Email *</FormLabel>
+                            <FormControl>
+                              <Input type="email" placeholder="john@example.com" {...field} />
+                            </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -242,45 +227,32 @@ export default function NewPatientPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="postcode"
+                        name="occupation"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Postcode *</FormLabel>
+                            <FormLabel>Occupation *</FormLabel>
                             <FormControl>
-                              <Input placeholder="NG31 6SQ" {...field} />
+                              <Input placeholder="Your job title or occupation" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
+
                       <FormField
                         control={form.control}
-                        name="phone"
+                        name="sportsHobbies"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Phone Number *</FormLabel>
+                            <FormLabel>Sports/Hobbies</FormLabel>
                             <FormControl>
-                              <Input type="tel" placeholder="07123 456789" {...field} />
+                              <Input placeholder="List any sports or hobbies" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
                     </div>
-
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email Address *</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="john@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
@@ -296,12 +268,48 @@ export default function NewPatientPage() {
                           </FormItem>
                         )}
                       />
+
                       <FormField
                         control={form.control}
-                        name="emergencyContactPhone"
+                        name="emergencyContactNumber"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Emergency Contact Phone *</FormLabel>
+                            <FormLabel>Emergency Contact Number *</FormLabel>
+                            <FormControl>
+                              <Input type="tel" placeholder="07123 456789" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Medical Details */}
+                  <div className="space-y-6">
+                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Medical Details</h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="gpSurgery"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>GP Surgery *</FormLabel>
+                            <FormControl>
+                              <Input placeholder="GP Surgery Name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="gpSurgeryContact"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>GP Surgery Contact *</FormLabel>
                             <FormControl>
                               <Input type="tel" placeholder="07123 456789" {...field} />
                             </FormControl>
@@ -316,278 +324,246 @@ export default function NewPatientPage() {
                   <div className="space-y-6">
                     <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Medical History</h3>
 
-                    <FormField
-                      control={form.control}
-                      name="currentMedication"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Current Medication</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="List any current medications, including dosage" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="allergies"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Allergies</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="List any known allergies" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="medicalConditions"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Medical Conditions</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="List any current or past medical conditions" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="previousSurgeries"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Previous Surgeries</FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="List any previous surgeries and dates" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  {/* Current Problem */}
-                  <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Current Problem</h3>
-
-                    <FormField
-                      control={form.control}
-                      name="problemDescription"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Describe Your Current Problem *</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Please describe your symptoms, when they started, and what makes them better or worse"
-                              className="h-32"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <FormField
                         control={form.control}
-                        name="painLevel"
+                        name="heartDisease"
                         render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Pain Level (0-10) *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select pain level" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {[...Array(11)].map((_, i) => (
-                                  <SelectItem key={i} value={i.toString()}>
-                                    {i} {i === 0 ? "(No pain)" : i === 10 ? "(Worst pain)" : ""}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="problemDuration"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>How Long Have You Had This Problem? *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select duration" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="less-than-week">Less than a week</SelectItem>
-                                <SelectItem value="1-2-weeks">1-2 weeks</SelectItem>
-                                <SelectItem value="3-4-weeks">3-4 weeks</SelectItem>
-                                <SelectItem value="1-3-months">1-3 months</SelectItem>
-                                <SelectItem value="3-6-months">3-6 months</SelectItem>
-                                <SelectItem value="6-12-months">6-12 months</SelectItem>
-                                <SelectItem value="over-year">Over a year</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    <FormField
-                      control={form.control}
-                      name="previousTreatment"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Previous Treatment</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Have you received any treatment for this problem? If so, what and when?"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
-                  {/* Lifestyle */}
-                  <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Lifestyle Information</h3>
-
-                    <FormField
-                      control={form.control}
-                      name="occupation"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Occupation *</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your job title or occupation" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="exerciseFrequency"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Exercise Frequency *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="How often do you exercise?" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="none">No regular exercise</SelectItem>
-                                <SelectItem value="1-2-times">1-2 times per week</SelectItem>
-                                <SelectItem value="3-4-times">3-4 times per week</SelectItem>
-                                <SelectItem value="5-plus-times">5+ times per week</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="exerciseType"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Type of Exercise</FormLabel>
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                             <FormControl>
-                              <Input placeholder="e.g., Running, gym, swimming, football" {...field} />
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                             </FormControl>
-                            <FormMessage />
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Heart Disease</FormLabel>
+                            </div>
                           </FormItem>
                         )}
                       />
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="sleepQuality"
+                        name="faintDizziness"
                         render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Sleep Quality *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Rate your sleep quality" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="excellent">Excellent</SelectItem>
-                                <SelectItem value="good">Good</SelectItem>
-                                <SelectItem value="fair">Fair</SelectItem>
-                                <SelectItem value="poor">Poor</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Faint/Dizziness</FormLabel>
+                            </div>
                           </FormItem>
                         )}
                       />
+
                       <FormField
                         control={form.control}
-                        name="stressLevel"
+                        name="hypertension"
                         render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Stress Level *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Rate your stress level" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="low">Low</SelectItem>
-                                <SelectItem value="moderate">Moderate</SelectItem>
-                                <SelectItem value="high">High</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Hypertension</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="diabetes"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Diabetes</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="pacemaker"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Pacemaker</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="osteoporosis"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Osteoporosis</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="epilepsy"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Epilepsy</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="asthma"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Asthma</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="allergies"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Allergies</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="pregnant"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Pregnant</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="smoker"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Smoker</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="cancer"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Cancer</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="surgeries"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Surgeries</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="medications"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Medications</FormLabel>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="bleedingDisorders"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel className="text-sm font-normal">Bleeding Disorders</FormLabel>
+                            </div>
                           </FormItem>
                         )}
                       />
                     </div>
                   </div>
 
-                  {/* Goals and Expectations */}
+                  {/* Additional Information */}
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Treatment Goals</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Additional Information</h3>
 
                     <FormField
                       control={form.control}
-                      name="treatmentGoals"
+                      name="otherRelevantInfo"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>What Are Your Goals for Treatment? *</FormLabel>
+                          <FormLabel>Other Relevant Information</FormLabel>
                           <FormControl>
-                            <Textarea
-                              placeholder="e.g., Return to sport, reduce pain, improve mobility, prevent future injury"
-                              className="h-32"
-                              {...field}
-                            />
+                            <Textarea placeholder="Any other information you think is relevant" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -614,43 +590,6 @@ export default function NewPatientPage() {
                                 guarantee of recovery has been made. *
                               </FormLabel>
                               <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="consentDataProcessing"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel className="text-sm font-normal">
-                                I consent to my personal data being processed for the purpose of providing healthcare
-                                services, in accordance with GDPR regulations. *
-                              </FormLabel>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="consentMarketing"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel className="text-sm font-normal">
-                                I would like to receive updates about services, health tips, and special offers from
-                                Keystone Sports Therapy (optional).
-                              </FormLabel>
                             </div>
                           </FormItem>
                         )}

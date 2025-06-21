@@ -7,26 +7,17 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     const requiredFields = [
-      "firstName",
-      "lastName",
+      "name",
       "dateOfBirth",
-      "gender",
+      "contactNumber",
+      "contactEmail",
       "address",
-      "postcode",
-      "phone",
-      "email",
-      "emergencyContactName",
-      "emergencyContactPhone",
-      "problemDescription",
-      "painLevel",
-      "problemDuration",
       "occupation",
-      "exerciseFrequency",
-      "sleepQuality",
-      "stressLevel",
-      "treatmentGoals",
+      "emergencyContactName",
+      "emergencyContactNumber",
+      "gpSurgery",
+      "gpSurgeryContact",
       "consentTreatment",
-      "consentDataProcessing",
     ]
 
     for (const field of requiredFields) {

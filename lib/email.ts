@@ -52,6 +52,20 @@ export interface NewPatientFormData {
   consentTreatment: boolean
   consentDataProcessing: boolean
   consentMarketing?: boolean
+  heartDisease: boolean
+  faintDizziness: boolean
+  hypertension: boolean
+  diabetes: boolean
+  pacemaker: boolean
+  osteoporosis: boolean
+  epilepsy: boolean
+  asthma: boolean
+  pregnant: boolean
+  smoker: boolean
+  cancer: boolean
+  surgeries: boolean
+  medications: boolean
+  bleedingDisorders: boolean
 }
 
 export async function sendContactEmail(data: ContactFormData) {
@@ -191,12 +205,23 @@ export async function sendNewPatientEmail(data: NewPatientFormData) {
         </div>
 
         <!-- Medical History -->
-        <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <div style="background-color: #fef2f2; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #374151; margin-top: 0;">Medical History</h3>
-          <p><strong>Current Medication:</strong> ${data.currentMedication || "None specified"}</p>
-          <p><strong>Allergies:</strong> ${data.allergies || "None specified"}</p>
-          <p><strong>Medical Conditions:</strong> ${data.medicalConditions || "None specified"}</p>
-          <p><strong>Previous Surgeries:</strong> ${data.previousSurgeries || "None specified"}</p>
+          <p><strong>Heart disease or chest pain:</strong> ${data.heartDisease ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Faint or severe dizziness:</strong> ${data.faintDizziness ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Hypertension (high blood pressure):</strong> ${data.hypertension ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Diabetes:</strong> ${data.diabetes ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Pacemaker:</strong> ${data.pacemaker ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Osteopenia or osteoporosis:</strong> ${data.osteoporosis ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Epilepsy/seizures:</strong> ${data.epilepsy ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Asthma or respiratory conditions:</strong> ${data.asthma ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Allergies/sensitivities:</strong> ${data.allergies ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Pregnant:</strong> ${data.pregnant ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Smoker:</strong> ${data.smoker ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Cancer history:</strong> ${data.cancer ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Major surgeries:</strong> ${data.surgeries ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Taking medications:</strong> ${data.medications ? "✅ Yes" : "❌ No"}</p>
+          <p><strong>Bleeding disorders:</strong> ${data.bleedingDisorders ? "✅ Yes" : "❌ No"}</p>
         </div>
 
         <!-- Current Problem -->
