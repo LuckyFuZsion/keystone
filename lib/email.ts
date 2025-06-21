@@ -11,8 +11,8 @@ console.log('EMAIL_TO:', process.env.EMAIL_TO)
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.GMAIL_USER || 'info.webfuzsion@gmail.com',
-    pass: process.env.GMAIL_APP_PASSWORD || 'iloaowlqeyrnmhch',
+    user: process.env.GMAIL_USER || 'hello@kstherapyclinic.com',
+    pass: process.env.GMAIL_APP_PASSWORD || '',
   },
 })
 
@@ -28,7 +28,7 @@ export async function sendContactEmail(data: ContactFormData) {
   const { firstName, lastName, email, phone, message } = data
 
   const mailOptions = {
-    from: process.env.EMAIL_FROM || 'WebFuZsion <info.webfuzsion@gmail.com>',
+    from: process.env.EMAIL_FROM || 'Keystone Sports Therapy <hello@kstherapyclinic.com>',
     to: process.env.EMAIL_TO || 'hello@kstherapyclinic.com',
     replyTo: email, // This allows the client to reply directly to the visitor
     subject: `New Contact Form Submission from ${firstName} ${lastName}`,
@@ -89,7 +89,7 @@ export async function sendConfirmationEmail(data: ContactFormData) {
   const { firstName, lastName, email } = data
 
   const mailOptions = {
-    from: process.env.EMAIL_FROM || 'WebFuZsion <info.webfuzsion@gmail.com>',
+    from: process.env.EMAIL_FROM || 'Keystone Sports Therapy <hello@kstherapyclinic.com>',
     to: email,
     subject: 'Thank you for contacting Keystone Sports Therapy',
     html: `
