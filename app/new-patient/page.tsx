@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useSuppressHydration } from "@/hooks/use-suppress-hydration"
 
 // Form validation schema
 const newPatientFormSchema = z.object({
@@ -61,6 +62,7 @@ type NewPatientFormData = z.infer<typeof newPatientFormSchema>
 export default function NewPatientPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
+  const isClient = useSuppressHydration()
 
   const form = useForm<NewPatientFormData>({
     resolver: zodResolver(newPatientFormSchema),
@@ -125,6 +127,28 @@ export default function NewPatientPage() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-teal-50">
+        <section className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">New Patient Form</h1>
+              <p className="text-xl text-gray-600">Please complete this form before your first appointment</p>
+            </div>
+            <Card>
+              <CardContent>
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="h-8 w-8 animate-spin" />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </div>
+    )
   }
 
   return (

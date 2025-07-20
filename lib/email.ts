@@ -8,7 +8,7 @@ console.log("EMAIL_FROM:", process.env.EMAIL_FROM)
 console.log("EMAIL_TO:", process.env.EMAIL_TO)
 
 // Email configuration
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.GMAIL_USER || "hello@kstherapyclinic.com",
