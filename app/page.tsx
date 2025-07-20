@@ -480,40 +480,35 @@ export default function HomePage() {
                     {
                       src: "/images/sports_massage.png",
                       title: "SPORTS MASSAGE THERAPY",
-                      description:
-                        "Professional sports massage with comprehensive assessment including dry needling and cupping therapy.",
-                      price: "From £40",
+                      description: "Professional sports massage therapy for injury recovery, muscle tension relief, and performance enhancement.",
+                      price: "From £60",
                       color: "teal",
                     },
                     {
                       src: "/images/personal_training.png",
                       title: "PERSONAL TRAINING",
-                      description:
-                        "Customized training programs with flexible packages designed to meet your individual fitness goals.",
+                      description: "Customised training programmes with flexible packages designed to meet your individual fitness goals.",
                       price: "From £50",
                       color: "blue",
                     },
                     {
                       src: "/images/reformer.png",
                       title: "REFORMER PILATES",
-                      description:
-                        "Premium Reformer Pilates using state-of-the-art Align Pilates equipment at our Grantham clinic.",
-                      price: "From £65",
+                      description: "Premium Reformer Pilates using state-of-the-art Align Pilates equipment at our Grantham clinic.",
+                      price: "From £20",
                       color: "purple",
                     },
                     {
                       src: "/images/nutrition_advice.png",
                       title: "NUTRITION ADVICE",
-                      description:
-                        "Personalized nutrition guidance and meal planning with comprehensive dietary education.",
+                      description: "Personalised nutrition guidance and meal planning with comprehensive dietary education.",
                       price: "From £60",
                       color: "orange",
                     },
                     {
                       src: "/images/b12_injections.png",
                       title: "B12 INJECTIONS",
-                      description:
-                        "Vitamin B12 injections for energy and wellness with immune system support benefits.",
+                      description: "Vitamin B12 injections for energy and wellness with immune system support benefits.",
                       price: "From £30",
                       color: "red",
                     },
@@ -522,40 +517,35 @@ export default function HomePage() {
                       {
                         src: "/images/sports_massage.png",
                         title: "SPORTS MASSAGE THERAPY",
-                        description:
-                          "Professional sports massage with comprehensive assessment including dry needling and cupping therapy.",
-                        price: "From £40",
+                        description: "Professional sports massage therapy for injury recovery, muscle tension relief, and performance enhancement.",
+                        price: "From £60",
                         color: "teal",
                       },
                       {
                         src: "/images/personal_training.png",
                         title: "PERSONAL TRAINING",
-                        description:
-                          "Customized training programs with flexible packages designed to meet your individual fitness goals.",
+                        description: "Customised training programmes with flexible packages designed to meet your individual fitness goals.",
                         price: "From £50",
                         color: "blue",
                       },
                       {
                         src: "/images/reformer.png",
                         title: "REFORMER PILATES",
-                        description:
-                          "Premium Reformer Pilates using state-of-the-art Align Pilates equipment at our Grantham clinic.",
-                        price: "From £65",
+                        description: "Premium Reformer Pilates using state-of-the-art Align Pilates equipment at our Grantham clinic.",
+                        price: "From £20",
                         color: "purple",
                       },
                       {
                         src: "/images/nutrition_advice.png",
                         title: "NUTRITION ADVICE",
-                        description:
-                          "Personalized nutrition guidance and meal planning with comprehensive dietary education.",
+                        description: "Personalised nutrition guidance and meal planning with comprehensive dietary education.",
                         price: "From £60",
                         color: "orange",
                       },
                       {
                         src: "/images/b12_injections.png",
                         title: "B12 INJECTIONS",
-                        description:
-                          "Vitamin B12 injections for energy and wellness with immune system support benefits.",
+                        description: "Vitamin B12 injections for energy and wellness with immune system support benefits.",
                         price: "From £30",
                         color: "red",
                       },
@@ -587,7 +577,13 @@ export default function HomePage() {
                           </motion.div>
                           <div className="p-6 text-center">
                             <h3 className="text-lg font-medium text-gray-900 mb-2 tracking-wide">{service.title}</h3>
-                            <p className="text-gray-600 text-sm mb-4 leading-relaxed">{service.description}</p>
+                            <div className="text-gray-600 text-sm mb-4 leading-relaxed">
+                              {typeof service.description === "string" ? (
+                                <p>{service.description}</p>
+                              ) : (
+                                service.description
+                              )}
+                            </div>
                             <div className="text-xl font-light text-gray-900 mb-4">{service.price}</div>
                             <Link href="/services">
                               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

@@ -42,11 +42,16 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+    
+    // Filter out browser-added attributes that cause hydration issues
+    const { fdprocessedid, ...filteredProps } = props as any
+    
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        {...props}
+        suppressHydrationWarning
+        {...filteredProps}
       />
     )
   }

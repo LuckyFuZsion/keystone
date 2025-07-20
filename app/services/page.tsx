@@ -65,16 +65,16 @@ export default function ServicesPage() {
                   <CardContent className="flex flex-col flex-1">
                     <div className="space-y-2 flex-1">
                       <div className="flex justify-between items-center text-sm">
-                        <span>Initial Consultation (1hr)</span>
+                        <span>Initial Consultation (Client Intake)</span>
                         <span className="font-bold text-teal-600">£70</span>
                       </div>
                       <div className="flex justify-between items-center text-sm">
-                        <span>Treatment (60 mins)</span>
-                        <span className="font-bold text-teal-600">£60</span>
+                        <span>Movement Assessment & Treatment (1 hr)</span>
+                        <span className="font-bold text-teal-600">£70</span>
                       </div>
                       <div className="flex justify-between items-center text-sm">
-                        <span>Short Treatment (30 mins)</span>
-                        <span className="font-bold text-teal-600">£40</span>
+                        <span>Consecutive Treatment (60 mins)</span>
+                        <span className="font-bold text-teal-600">£60</span>
                       </div>
                     </div>
                     <div className="mt-6 space-y-3">
@@ -113,7 +113,19 @@ export default function ServicesPage() {
                       <div className="text-sm space-y-2">
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
-                          <span>Dry Needling</span>
+                          <span>Sports Massage Therapy</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
+                          <span>Remedial Massage Therapy</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
+                          <span>Hot Stones Massage</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
+                          <span>Dry Needling (no extra cost)</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-teal-600 rounded-full"></div>
@@ -132,9 +144,11 @@ export default function ServicesPage() {
                           <span>GP/Medical referral letter</span>
                         </div>
                       </div>
-                      <p className="text-xs text-gray-600 italic mt-3">
-                        You pay for expertise and time, not treatment modalities. Short treatments for existing clients
-                        only.
+                      <p className="text-xs text-blue-600 font-medium mt-3">
+                        15% Blue Light discount on all massage treatments until 31 May 2026 (card verification required).
+                      </p>
+                      <p className="text-xs text-gray-600 italic mt-2">
+                        No additional cost for Dry Needling, Acupuncture, Cupping or Taping & Strapping. GP/medical referral letter available as part of the service fee.
                       </p>
                     </div>
                     <Link href="/contact">
@@ -174,7 +188,7 @@ export default function ServicesPage() {
                     </div>
                     <CardTitle className="text-lg">Personal Training</CardTitle>
                     <CardDescription className="text-sm">
-                      Customized training programs with flexible packages
+                      Customised training programmes with flexible packages
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="flex flex-col flex-1">
@@ -184,7 +198,7 @@ export default function ServicesPage() {
                         <span className="font-bold text-blue-600">£50</span>
                       </div>
                       <div className="flex justify-between items-center text-sm">
-                        <span>5 Sessions</span>
+                        <span>5 Sessions (60 mins)</span>
                         <span className="font-bold text-blue-600">£240</span>
                       </div>
                       <div className="flex justify-between items-center text-sm">
@@ -228,7 +242,7 @@ export default function ServicesPage() {
                       <div className="text-sm space-y-2">
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                          <span>Personalized workout plans</span>
+                          <span>Personalised workout programmes</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
@@ -236,11 +250,11 @@ export default function ServicesPage() {
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                          <span>Duet sessions available (+£10)</span>
+                          <span>Duet sessions available (+£10 levy)</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                          <span>Clinical rehabilitation work</span>
+                          <span>Clinical rehabilitation work (1:1)</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
@@ -248,7 +262,10 @@ export default function ServicesPage() {
                         </div>
                       </div>
                       <p className="text-xs text-gray-600 italic mt-3">
-                        Bring a friend and share the cost! Clinical rehabilitation work undertaken - price upon request.
+                        I can accommodate Duet PT Sessions depending on goals and needs; Duet (bring a friend, share the cost: extra £10 levy per session which can be split equally between attendants).
+                      </p>
+                      <p className="text-xs text-gray-600 mt-2">
+                        Clinical Rehabilitation Work (1:1) undertaken - price upon request. Please email me to discuss your requirements: <span className="text-blue-600">hello@kstherapyclinic.com</span>
                       </p>
                     </div>
                     <Link href="/contact">
@@ -415,7 +432,7 @@ export default function ServicesPage() {
                       </div>
                       <div className="flex justify-between items-center text-sm">
                         <span>10 Sessions</span>
-                        <span className="font-bold text-purple-600">£580</span>
+                        <span className="font-bold text-purple-600">£600</span>
                       </div>
                     </div>
                     <div className="mt-6 space-y-3">
@@ -454,27 +471,42 @@ export default function ServicesPage() {
                       <div className="text-sm space-y-2">
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                          <span>Latest Align Pilates machines</span>
+                          <span>Latest Align Pilates machines (Grantham clinic)</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                          <span>Group classes available</span>
+                          <span>Duet sessions available (+£10 levy)</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                          <span>Single pass: £20</span>
+                          <span>Group classes: Single pass £20</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                          <span>8 session pass: £150</span>
+                          <span>Group classes: 8 session pass £150</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                          <span>Limited to 5 people only</span>
+                          <span>Limited to 5 people per class</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                          <span>50-minute sessions</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                          <span>24-hour booking system closure</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                          <span>24-hour cancellation policy</span>
                         </div>
                       </div>
                       <p className="text-xs text-gray-600 italic mt-3">
-                        Book directly: hello@kstherapyclinic.com. Bring your own grip socks 🙏
+                        Book via email: <span className="text-purple-600">hello@kstherapyclinic.com</span> or booking system: <span className="text-purple-600">https://bookwhen.com/keystone</span>
+                      </p>
+                      <p className="text-xs text-gray-600 mt-2">
+                        Please bring your own grip socks 🙏
                       </p>
                     </div>
                     <Link href="/contact">
@@ -520,17 +552,17 @@ export default function ServicesPage() {
                     </div>
                     <CardTitle className="text-lg">Nutrition Advice</CardTitle>
                     <CardDescription className="text-sm">
-                      Personalized nutrition guidance and meal planning
+                      Personalised nutrition guidance and meal planning
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="flex flex-col flex-1">
                     <div className="space-y-2 flex-1">
                       <div className="flex justify-between items-center text-sm">
-                        <span>Guidance (60 mins)</span>
+                        <span>Personalised Guidance (60mins)</span>
                         <span className="font-bold text-orange-600">£60</span>
                       </div>
                       <div className="flex justify-between items-center text-sm">
-                        <span>4 Week Plan</span>
+                        <span>Nutrition Plans (4 week plan)</span>
                         <span className="font-bold text-orange-600">£200</span>
                       </div>
                     </div>
@@ -590,7 +622,10 @@ export default function ServicesPage() {
                         </div>
                       </div>
                       <p className="text-xs text-gray-600 italic mt-3">
-                        Personalized approach to help you achieve your health and fitness goals.
+                        Personalised approach to help you achieve your health and fitness goals.
+                      </p>
+                      <p className="text-xs text-gray-600 mt-2">
+                        Contact us for personalised nutrition guidance and comprehensive meal planning.
                       </p>
                     </div>
                     <Link href="/contact">
@@ -640,7 +675,7 @@ export default function ServicesPage() {
                         <span className="font-bold text-red-600">£30</span>
                       </div>
                       <div className="flex justify-between items-center text-sm">
-                        <span>4 injections/vials</span>
+                        <span>4 injections/vials (£25 per injection)</span>
                         <span className="font-bold text-red-600">£100</span>
                       </div>
                     </div>
@@ -701,6 +736,9 @@ export default function ServicesPage() {
                       </div>
                       <p className="text-xs text-gray-600 italic mt-3">
                         Safe, effective vitamin B12 supplementation for optimal wellness.
+                      </p>
+                      <p className="text-xs text-gray-600 mt-2">
+                        Contact us for more information and to book your appointment.
                       </p>
                     </div>
                     <Link href="/contact">

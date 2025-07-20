@@ -29,7 +29,7 @@ export default function GalleryPage() {
       src: "/images/personal_training.png",
       alt: "Personal Training",
       title: "Personal Training",
-      description: "Customized fitness programs and coaching",
+      description: "Customised fitness programmes and coaching",
     },
     {
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_64a2fd66-132d-4230-9b15-99f4485af97e-3d940cc4-a097ea1a-7a32b3c0-5c43e274-cefb1dba.jpg-HkNwzybdVD4TK59lGq1THJlgTHhKUg.jpeg",

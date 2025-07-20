@@ -167,6 +167,7 @@ export default function Header() {
     { href: "/gallery", label: "Gallery" },
     { href: "/reviews", label: "Customer Reviews" },
     { href: "/book", label: "Book Appointment" },
+    { href: "/new-patient", label: "New Patient Form" },
     { href: "/contact", label: "Contact Us" },
   ]
 

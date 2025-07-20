@@ -41,7 +41,7 @@ export default function ReviewsPage() {
                   ))}
                 </div>
                 <p className="text-gray-600 mb-4">
-                  "The personal training sessions have transformed my fitness level. Nasreen creates programs that are
+                  "The personal training sessions have transformed my fitness level. Nasreen creates programmes that are
                   challenging yet achievable, and her support keeps me motivated."
                 </p>
                 <div className="flex items-center">
@@ -62,7 +62,7 @@ export default function ReviewsPage() {
                   ))}
                 </div>
                 <p className="text-gray-600 mb-4">
-                  "After my injury, the rehabilitation program helped me get back to full strength. The care and
+                  "After my injury, the rehabilitation programme helped me get back to full strength. The care and
                   attention to detail in my recovery plan was exceptional."
                 </p>
                 <div className="flex items-center">

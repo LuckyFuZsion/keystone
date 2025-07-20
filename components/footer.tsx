@@ -1,13 +1,17 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Mail, MapPin, Clock } from "lucide-react"
+import { Mail, MapPin, Clock, Facebook, Instagram } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
+import Image from "next/image"
+import { useSuppressHydration } from "@/hooks/use-suppress-hydration"
 
 export default function Footer() {
+  const isClient = useSuppressHydration()
+
   return (
     <AnimatedSection>
       <footer className="py-16 bg-gray-900 text-white">
@@ -49,20 +53,79 @@ export default function Footer() {
               </motion.div>
             </StaggerContainer>
 
-            <Link href="/contact">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-sm font-medium tracking-wide transition-all duration-300">
-                  BOOK CONSULTATION
-                </Button>
-              </motion.div>
-            </Link>
+            {/* Social Media Links */}
+            <motion.div
+              className="flex justify-center items-center gap-6 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Link href="https://facebook.com/Keystonesportstherapy" target="_blank" rel="noopener noreferrer">
+                <motion.div
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-all duration-300"
+                >
+                  <Facebook className="w-6 h-6 text-white" />
+                </motion.div>
+              </Link>
+              
+              <Link href="https://instagram.com/keystone_sports_therapY" target="_blank" rel="noopener noreferrer">
+                <motion.div
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-full flex items-center justify-center transition-all duration-300"
+                >
+                  <Instagram className="w-6 h-6 text-white" />
+                </motion.div>
+              </Link>
+            </motion.div>
+
+            {isClient && (
+              <Link href="/contact">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-sm font-medium tracking-wide transition-all duration-300">
+                    BOOK CONSULTATION
+                  </Button>
+                </motion.div>
+              </Link>
+            )}
+
+            {/* WebFuzsion Credit */}
+            <motion.div
+              className="mt-12 pt-8 border-t border-gray-800"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-gray-400 text-xs mb-2">Website designed by</p>
+                <Link href="https://webfuzsion.co.uk" target="_blank" rel="noopener noreferrer">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="transition-all duration-300"
+                  >
+                    <Image
+                      src="https://www.jammmyslots.com/webfuzsion-logo-optimized.png"
+                      alt="WebFuzsion - Web Design Studio"
+                      width={120}
+                      height={40}
+                      className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </motion.div>
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </footer>
