@@ -45,6 +45,14 @@ function ContactForm() {
     },
   })
 
+  // Debug: Check if reCAPTCHA is available
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log('reCAPTCHA executeRecaptcha available:', !!executeRecaptcha)
+      console.log('window.grecaptcha available:', typeof window.grecaptcha !== 'undefined')
+    }
+  }, [executeRecaptcha])
+
   const onSubmit = async (data: ContactFormData) => {
     // Check honeypot field
     if (data.website && data.website.length > 0) {
@@ -58,7 +66,21 @@ function ContactForm() {
       // Get reCAPTCHA token
       let recaptchaToken = ""
       if (executeRecaptcha) {
-        recaptchaToken = await executeRecaptcha("contact_form")
+        try {
+          recaptchaToken = await executeRecaptcha("contact_form")
+          console.log('reCAPTCHA token generated:', !!recaptchaToken)
+        } catch (error) {
+          console.error('reCAPTCHA execution error:', error)
+          toast({
+            title: "Security verification error",
+            description: "Please refresh the page and try again.",
+            variant: "destructive",
+          })
+          setIsSubmitting(false)
+          return
+        }
+      } else {
+        console.warn('⚠️ reCAPTCHA executeRecaptcha is not available')
       }
 
       const response = await fetch('/api/contact', {
