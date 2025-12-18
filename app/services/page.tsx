@@ -281,118 +281,6 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            {/* Mat Based Pilates */}
-            <div className="relative h-160" style={{ perspective: "1000px" }}>
-              <div
-                className={`relative w-full h-full transition-transform duration-700 cursor-pointer`}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: flippedCards["pilates"] ? "rotateY(180deg)" : "rotateY(0deg)",
-                }}
-                onClick={() => toggleCard("pilates")}
-              >
-                {/* Front of card */}
-                <Card
-                  className="absolute inset-0 w-full h-full hover:shadow-lg transition-shadow border-0 shadow-md flex flex-col"
-                  style={{ backfaceVisibility: "hidden" }}
-                >
-                  <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src="/images/mat_based_pilates.png" alt="Ropsley Village Pilates Class" fill className="object-cover" />
-                  </div>
-                  <CardHeader className="pb-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-                      <Heart className="w-6 h-6 text-green-600" />
-                    </div>
-                    <CardTitle className="text-lg">Ropsley Village Pilates Class</CardTitle>
-                    <CardDescription className="text-sm">APPI qualified Pilates instruction</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-col flex-1">
-                    <div className="space-y-2 flex-1">
-                      <div className="flex justify-between items-center text-sm">
-                        <span>6-week Subscription</span>
-                        <span className="font-bold text-green-600">£48</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span>Drop-in Rate</span>
-                        <span className="font-bold text-green-600">£10</span>
-                      </div>
-                      <div className="flex justify-between items-center text-sm">
-                        <span>Class Time</span>
-                        <span className="font-bold text-green-600">18:00-19:00</span>
-                      </div>
-                    </div>
-                    <div className="mt-6 space-y-3">
-                      <Link href="/contact">
-                        <Button
-                          className="w-full bg-green-600 hover:bg-green-700 text-sm py-2"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Book Now
-                        </Button>
-                      </Link>
-                      <div className="flex items-center justify-center text-green-600">
-                        <RotateCcw className="w-4 h-4 mr-2" />
-                        <span className="text-xs">More Details</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Back of card */}
-                <Card
-                  className="absolute inset-0 w-full h-full hover:shadow-lg transition-shadow border-0 shadow-md bg-green-50 flex flex-col"
-                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-                >
-                  <div className="h-64 relative overflow-hidden rounded-t-lg bg-green-100 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-green-900/20"></div>
-                    <h3 className="text-2xl font-bold text-white relative z-10 px-4 text-center">
-                      Ropsley Village Pilates Class Details
-                    </h3>
-                  </div>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-lg text-green-800">Class Schedule</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex flex-col flex-1">
-                    <div className="flex-1">
-                      <div className="text-sm space-y-2">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          <span>Every Tuesday 18:00-19:00</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          <span>Current Block: 11th June - 16th July</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          <span>Next Block: 3rd September - 8th October</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          <span>6-week subscription: £48</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          <span>Drop-in rate: £10 per person</span>
-                        </div>
-                      </div>
-                      <p className="text-xs text-gray-600 italic mt-3">
-                        Classes run in 6-week blocks. Book your place early to secure your spot!
-                      </p>
-                    </div>
-                    <Link href="/contact">
-                      <Button
-                        className="w-full bg-green-600 hover:bg-green-700 text-sm py-2 mt-6"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Contact Us
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
             {/* Reformer Pilates */}
             <div className="relative h-160" style={{ perspective: "1000px" }}>
               <div
@@ -521,9 +409,12 @@ export default function ServicesPage() {
                 </Card>
               </div>
             </div>
+          </div>
 
+          {/* Bottom row - centered on desktop */}
+          <div className="flex flex-col md:flex-row lg:flex-row lg:justify-center gap-6 mt-6 lg:mt-6">
             {/* Nutrition Advice */}
-            <div className="relative h-160" style={{ perspective: "1000px" }}>
+            <div className="relative h-160 w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]" style={{ perspective: "1000px" }}>
               <div
                 className={`relative w-full h-full transition-transform duration-700 cursor-pointer`}
                 style={{
@@ -642,7 +533,7 @@ export default function ServicesPage() {
             </div>
 
             {/* B12 Injections */}
-            <div className="relative h-160" style={{ perspective: "1000px" }}>
+            <div className="relative h-160 w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]" style={{ perspective: "1000px" }}>
               <div
                 className={`relative w-full h-full transition-transform duration-700 cursor-pointer`}
                 style={{

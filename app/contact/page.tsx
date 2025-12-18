@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -12,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import BookwhenCalendar from "@/components/bookwhen-calendar"
+import { ReCaptchaProvider } from "@/components/recaptcha-provider"
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -20,13 +22,16 @@ const contactFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  // Honeypot field - should always be empty
+  website: z.string().max(0, "This field should be empty").optional(),
 })
 
 type ContactFormData = z.infer<typeof contactFormSchema>
 
-export default function ContactPage() {
+function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -36,24 +41,44 @@ export default function ContactPage() {
       email: "",
       phone: "",
       message: "",
+      website: "",
     },
   })
 
   const onSubmit = async (data: ContactFormData) => {
+    // Check honeypot field
+    if (data.website && data.website.length > 0) {
+      // Bot detected - silently fail
+      return
+    }
+
     setIsSubmitting(true)
     
     try {
+      // Get reCAPTCHA token
+      let recaptchaToken = ""
+      if (executeRecaptcha) {
+        recaptchaToken = await executeRecaptcha("contact_form")
+      }
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          recaptchaToken,
+        }),
       })
       
-      if (!response.ok) {
-        throw new Error('Failed to send message')
-      }
-      
       const result = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message')
+      }
       
       toast({
         title: "Message sent successfully!",
@@ -64,7 +89,7 @@ export default function ContactPage() {
     } catch (error) {
       toast({
         title: "Error sending message",
-        description: "Please try again later or contact us directly.",
+        description: error instanceof Error ? error.message : "Please try again later or contact us directly.",
         variant: "destructive",
       })
     } finally {
@@ -140,6 +165,28 @@ export default function ContactPage() {
                 <CardContent>
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                      {/* Honeypot field - hidden from users */}
+                      <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none', height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
+                        <FormField
+                          control={form.control}
+                          name="website"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel style={{ display: 'none' }}>Website</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  type="text" 
+                                  tabIndex={-1} 
+                                  autoComplete="off" 
+                                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                                  {...field} 
+                                />
+                              </FormControl>
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
                       <div className="grid grid-cols-2 gap-4">
                         <FormField
                           control={form.control}
@@ -251,5 +298,13 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function ContactPage() {
+  return (
+    <ReCaptchaProvider>
+      <ContactForm />
+    </ReCaptchaProvider>
   )
 }
