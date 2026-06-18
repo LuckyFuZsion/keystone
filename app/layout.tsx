@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: seo.title,
-    template: "%s | Keystone Sports Therapy",
+    template: "%s | Keystone",
   },
   description: seo.description,
   verification: {
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: seo.ogImage,
-        width: 512,
-        height: 512,
-        alt: "Keystone Sports Therapy logo",
+        width: seo.ogImageWidth,
+        height: seo.ogImageHeight,
+        alt: seo.ogImageAlt,
       },
     ],
   },

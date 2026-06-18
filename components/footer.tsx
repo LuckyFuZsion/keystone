@@ -112,6 +112,23 @@ export default function Footer() {
               </Link>
             )}
 
+            {/* Legal links */}
+            <motion.div
+              className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-400"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+            >
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <span aria-hidden="true">·</span>
+              <Link href="/contact" className="hover:text-white transition-colors">
+                Contact
+              </Link>
+            </motion.div>
+
             {/* WebFuzsion Credit */}
             <motion.div
               className="mt-12 pt-8 border-t border-gray-800"

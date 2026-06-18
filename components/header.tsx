@@ -6,7 +6,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { images, imageSizes } from "@/lib/images"
+import { images, imageDimensions, imageSizes } from "@/lib/images"
 
 // Utility functions
 function quickApply(str, fn, ele, options = {}) {
@@ -197,11 +197,11 @@ export default function Header() {
                 <Image
                   src={images.logo}
                   alt="Keystone Sports Therapy Logo - Teal diamond with white K"
-                  width={162}
-                  height={162}
-                  sizes={imageSizes.logo}
+                  width={imageDimensions.logo.width}
+                  height={imageDimensions.logo.height}
+                  sizes={imageSizes.logoDesktop}
                   priority
-                  className="filter brightness-0 invert"
+                  className="filter brightness-0 invert w-[162px] h-auto"
                 />
               </motion.div>
             </Link>
@@ -241,11 +241,11 @@ export default function Header() {
                 <Image
                   src={images.logo}
                   alt="Keystone Sports Therapy Logo"
-                  width={80}
-                  height={80}
-                  sizes="80px"
+                  width={imageDimensions.logo.width}
+                  height={imageDimensions.logo.height}
+                  sizes={imageSizes.logoMobile}
                   priority
-                  className="filter brightness-0 invert"
+                  className="filter brightness-0 invert w-20 h-auto"
                 />
               </motion.div>
             </Link>

@@ -10,7 +10,7 @@ import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
 import BookwhenCalendarWrapper from "@/components/bookwhen-calendar-wrapper"
-import { images, imageSizes } from "@/lib/images"
+import { images, imageDimensions, imageSizes } from "@/lib/images"
 import { useState, useRef, useEffect } from "react"
 
 export default function HomePage() {
@@ -150,10 +150,11 @@ export default function HomePage() {
                 <Image
                   src={images.sportsMassageHero}
                   alt="Sports Massage Therapy"
-                  fill
+                  width={imageDimensions.sportsMassageHero.width}
+                  height={imageDimensions.sportsMassageHero.height}
                   sizes={imageSizes.hero}
                   priority
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
@@ -176,10 +177,11 @@ export default function HomePage() {
                 <Image
                   src={images.personalTraining}
                   alt="Personal Training"
-                  fill
+                  width={imageDimensions.personalTraining.width}
+                  height={imageDimensions.personalTraining.height}
                   sizes={imageSizes.hero}
                   loading="lazy"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
@@ -202,10 +204,11 @@ export default function HomePage() {
                 <Image
                   src={images.reformer}
                   alt="Reformer Pilates classes in Grantham"
-                  fill
+                  width={imageDimensions.reformer.width}
+                  height={imageDimensions.reformer.height}
                   sizes={imageSizes.hero}
                   loading="lazy"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
@@ -736,10 +739,11 @@ export default function HomePage() {
                     <Image
                       src={images.matPilates}
                       alt="Mat Pilates studio in Grantham"
-                      fill
+                      width={imageDimensions.matPilates.width}
+                      height={imageDimensions.matPilates.height}
                       sizes={imageSizes.studio}
                       loading="lazy"
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </motion.div>
                   <motion.div
@@ -750,10 +754,11 @@ export default function HomePage() {
                     <Image
                       src={images.nutritionAdvice}
                       alt="Nutrition Consultation"
-                      fill
+                      width={imageDimensions.nutritionAdvice.width}
+                      height={imageDimensions.nutritionAdvice.height}
                       sizes={imageSizes.studio}
                       loading="lazy"
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </motion.div>
                 </motion.div>

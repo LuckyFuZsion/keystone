@@ -28,7 +28,10 @@ export const siteConfig = {
     ogTitle: "Pilates Grantham | Reformer & Mat Pilates",
     ogDescription:
       "Expert Reformer and Mat Pilates in Grantham. APPI-qualified instruction at our Castlegate clinic. Beginners welcome — book online.",
-    ogImage: "/android-chrome-512x512.png",
+    ogImage: "/og-image.png",
+    ogImageWidth: 750,
+    ogImageHeight: 394,
+    ogImageAlt: "Keystone Sports Therapy — Pilates and sports therapy in Grantham",
     twitterTitle: "Pilates Grantham | Keystone Sports Therapy",
     twitterDescription:
       "Reformer & Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Book your session online.",
