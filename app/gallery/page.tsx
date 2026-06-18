@@ -83,7 +83,7 @@ export default function GalleryPage() {
           <div className="container mx-auto px-4">
             <motion.div
               className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
@@ -116,13 +116,13 @@ export default function GalleryPage() {
                     />
                     <motion.div
                       className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"
-                      initial={{ opacity: 0 }}
+                      initial={false}
                       whileHover={{ opacity: 1 }}
                     />
                   </motion.div>
                   <motion.div
                     className="p-4"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}

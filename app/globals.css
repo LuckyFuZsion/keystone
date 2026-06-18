@@ -67,6 +67,16 @@ input, textarea, button, select {
   border-color: hsl(var(--border));
 }
 
+html {
+  scroll-padding-top: 6rem;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 13rem;
+  }
+}
+
 body {
   color: hsl(var(--foreground));
   background: hsl(var(--background));

@@ -174,12 +174,7 @@ export default function Header() {
   ]
 
   return (
-    <motion.header
-      className="fixed top-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm shadow-sm border-b z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
+    <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm shadow-sm border-b">
       {/* Logo section - hidden on mobile */}
       <div className="container mx-auto px-4 py-6 hidden lg:block">
         <div className="text-center">
@@ -189,21 +184,15 @@ export default function Header() {
             transition={{ duration: 0.2 }}
           >
             <Link href="/">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Image
-                  src={images.logo}
-                  alt="Keystone Sports Therapy Logo - Teal diamond with white K"
-                  width={imageDimensions.logo.width}
-                  height={imageDimensions.logo.height}
-                  sizes={imageSizes.logoDesktop}
-                  priority
-                  className="filter brightness-0 invert w-[162px] h-auto"
-                />
-              </motion.div>
+              <Image
+                src={images.logo}
+                alt="Keystone Sports Therapy Logo - Teal diamond with white K"
+                width={imageDimensions.logo.width}
+                height={imageDimensions.logo.height}
+                sizes={imageSizes.logoDesktop}
+                priority
+                className="filter brightness-0 invert w-[162px] h-auto"
+              />
             </Link>
           </motion.div>
         </div>
@@ -213,41 +202,30 @@ export default function Header() {
       <div className="border-t border-gray-200">
         <div className="container mx-auto px-4">
           <nav className="hidden lg:flex items-center justify-center space-x-12 py-4">
-            {navigationLinks.map((link, index) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-              >
+            {navigationLinks.map((link) => (
+              <div key={link.href}>
                 <Link
                   href={link.href}
                   className="nav-link text-white hover:text-teal-400 font-medium uppercase tracking-wide text-sm transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </nav>
 
           {/* Mobile menu button with logo */}
           <div className="lg:hidden flex justify-between items-center py-4 px-4">
             <Link href="/">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Image
-                  src={images.logo}
-                  alt="Keystone Sports Therapy Logo"
-                  width={imageDimensions.logo.width}
-                  height={imageDimensions.logo.height}
-                  sizes={imageSizes.logoMobile}
-                  priority
-                  className="filter brightness-0 invert w-20 h-auto"
-                />
-              </motion.div>
+              <Image
+                src={images.logo}
+                alt="Keystone Sports Therapy Logo"
+                width={imageDimensions.logo.width}
+                height={imageDimensions.logo.height}
+                sizes={imageSizes.logoMobile}
+                priority
+                className="filter brightness-0 invert w-20 h-auto"
+              />
             </Link>
             <motion.button onClick={toggleMenu} className="p-2" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <AnimatePresence mode="wait">
@@ -313,6 +291,6 @@ export default function Header() {
           </AnimatePresence>
         </div>
       </div>
-    </motion.header>
+    </header>
   )
 }

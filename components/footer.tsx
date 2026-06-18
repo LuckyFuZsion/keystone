@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2
               className="text-2xl md:text-3xl font-light mb-8 tracking-wide"
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -69,7 +69,7 @@ export default function Footer() {
             {/* Social Media Links */}
             <motion.div
               className="flex justify-center items-center gap-6 mb-8"
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -100,7 +100,7 @@ export default function Footer() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
@@ -115,7 +115,7 @@ export default function Footer() {
             {/* Legal links */}
             <motion.div
               className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-400"
-              initial={{ opacity: 0 }}
+              initial={false}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.35 }}
@@ -132,7 +132,7 @@ export default function Footer() {
             {/* WebFuzsion Credit */}
             <motion.div
               className="mt-12 pt-8 border-t border-gray-800"
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}

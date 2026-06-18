@@ -4,14 +4,14 @@ import { Poppins } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import PageTransition from "@/components/page-transition"
 import { Toaster } from "@/components/ui/toaster"
 import { LocalBusinessJsonLd } from "@/components/json-ld"
 import { siteConfig } from "@/lib/site"
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
+  display: "swap",
   variable: "--font-poppins",
 })
 
@@ -77,9 +77,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} font-sans`}>
         <LocalBusinessJsonLd />
         <Header />
-        <main className="pt-32">
-          <PageTransition>{children}</PageTransition>
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
         <Toaster />
       </body>

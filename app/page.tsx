@@ -85,14 +85,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={false}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
               <motion.h2
                 className="text-xl font-light text-gray-900 mb-2 tracking-wide"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -101,7 +101,7 @@ export default function HomePage() {
               </motion.h2>
               <motion.p
                 className="text-sm font-medium text-gray-500 mb-4 tracking-wide uppercase"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.25 }}
@@ -110,7 +110,7 @@ export default function HomePage() {
               </motion.p>
               <motion.p
                 className="text-gray-600 leading-relaxed text-sm mb-4"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -122,7 +122,7 @@ export default function HomePage() {
               </motion.p>
               <motion.p
                 className="text-gray-600 leading-relaxed text-sm"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -159,7 +159,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
                   className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={false}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
@@ -186,7 +186,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
                   className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={false}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 }}
                 >
@@ -213,7 +213,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
                   className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={false}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 }}
                 >
@@ -234,14 +234,14 @@ export default function HomePage() {
                 {/* Welcome Text */}
                 <motion.div
                   className="lg:col-span-2 order-1 hidden lg:block"
-                  initial={{ opacity: 0, x: -50 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
                   <motion.h2
                     className="text-xl lg:text-2xl xl:text-3xl font-light text-gray-900 mb-2 lg:mb-4 tracking-wide"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -250,7 +250,7 @@ export default function HomePage() {
                   </motion.h2>
                   <motion.p
                     className="text-sm lg:text-base font-medium text-gray-500 mb-4 lg:mb-6 tracking-wide uppercase"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.25 }}
@@ -259,7 +259,7 @@ export default function HomePage() {
                   </motion.p>
                   <motion.p
                     className="text-gray-600 leading-relaxed text-sm lg:text-base mb-4 lg:mb-6"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -271,7 +271,7 @@ export default function HomePage() {
                   </motion.p>
                   <motion.p
                     className="text-gray-600 leading-relaxed text-sm lg:text-base"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -284,7 +284,7 @@ export default function HomePage() {
                 {/* Intro Offer Card */}
                 <motion.div
                   className="bg-gray-100 p-6 lg:p-8 text-center order-2"
-                  initial={{ opacity: 0, x: 50 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
@@ -292,7 +292,7 @@ export default function HomePage() {
                 >
                   <motion.h3
                     className="text-lg lg:text-xl font-light text-gray-900 mb-2 tracking-wide"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -301,7 +301,7 @@ export default function HomePage() {
                   </motion.h3>
                   <motion.div
                     className="text-base lg:text-lg text-gray-900 mb-4"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -310,7 +310,7 @@ export default function HomePage() {
                   </motion.div>
                   <motion.p
                     className="text-xs lg:text-sm text-gray-600 mb-6 uppercase tracking-wide"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -338,7 +338,7 @@ export default function HomePage() {
             <div className="max-w-4xl mx-auto">
               <motion.div
                 className="bg-white rounded-lg shadow-lg border border-blue-100 overflow-hidden"
-                initial={{ opacity: 0, y: 50 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
@@ -355,7 +355,7 @@ export default function HomePage() {
                       <div className="flex-1 text-center md:text-left">
                         <motion.div
                           className="mb-4"
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={false}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.6, delay: 0.3 }}
@@ -371,7 +371,7 @@ export default function HomePage() {
 
                         <motion.p
                           className="text-gray-600 leading-relaxed text-sm md:text-base mb-6"
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={false}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.6, delay: 0.4 }}
@@ -386,7 +386,7 @@ export default function HomePage() {
 
                         <motion.div
                           className="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start"
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={false}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.6, delay: 0.5 }}
@@ -434,7 +434,7 @@ export default function HomePage() {
             <div className="max-w-6xl mx-auto">
               <motion.div
                 className="text-center mb-12"
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
@@ -673,7 +673,7 @@ export default function HomePage() {
             <div className="max-w-6xl mx-auto">
               <motion.div
                 className="text-center mb-12"
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
@@ -690,7 +690,7 @@ export default function HomePage() {
                 />
                 <motion.p
                   className="text-gray-600 leading-relaxed text-sm md:text-base max-w-3xl mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -705,7 +705,7 @@ export default function HomePage() {
 
               <motion.div
                 className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
-                initial={{ opacity: 0, y: 50 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -726,7 +726,7 @@ export default function HomePage() {
                 {/* Studio Images */}
                 <motion.div
                   className="grid grid-cols-2 gap-4"
-                  initial={{ opacity: 0, x: -50 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
@@ -766,7 +766,7 @@ export default function HomePage() {
                 {/* Experience Text */}
                 <motion.div
                   className="bg-gray-50 p-8 border border-gray-200"
-                  initial={{ opacity: 0, x: 50 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
@@ -774,7 +774,7 @@ export default function HomePage() {
                 >
                   <motion.h3
                     className="text-xl font-light text-gray-900 mb-4 tracking-wide"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -784,7 +784,7 @@ export default function HomePage() {
                   </motion.h3>
                   <motion.p
                     className="text-gray-600 leading-relaxed text-sm mb-6"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
