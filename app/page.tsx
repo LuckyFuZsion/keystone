@@ -86,14 +86,23 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <motion.h2
-                className="text-xl font-light text-gray-900 mb-4 tracking-wide"
+              <motion.h1
+                className="text-xl font-light text-gray-900 mb-2 tracking-wide"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                WELCOME TO KEYSTONE SPORTS THERAPY
+                Pilates Classes in Grantham
+              </motion.h1>
+              <motion.h2
+                className="text-sm font-medium text-gray-500 mb-4 tracking-wide uppercase"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+              >
+                Welcome to Keystone Sports Therapy
               </motion.h2>
               <motion.p
                 className="text-gray-600 leading-relaxed text-sm mb-4"
@@ -186,7 +195,7 @@ export default function HomePage() {
               >
                 <motion.img
                   src="/images/reformer.png"
-                  alt="Reformer Pilates"
+                  alt="Reformer Pilates classes in Grantham"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.6 }}
@@ -220,14 +229,23 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <motion.h2
-                    className="text-xl lg:text-2xl xl:text-3xl font-light text-gray-900 mb-4 lg:mb-6 tracking-wide"
+                  <motion.h1
+                    className="text-xl lg:text-2xl xl:text-3xl font-light text-gray-900 mb-2 lg:mb-4 tracking-wide"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    WELCOME TO KEYSTONE SPORTS THERAPY
+                    Pilates Classes in Grantham
+                  </motion.h1>
+                  <motion.h2
+                    className="text-sm lg:text-base font-medium text-gray-500 mb-4 lg:mb-6 tracking-wide uppercase"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.25 }}
+                  >
+                    Welcome to Keystone Sports Therapy
                   </motion.h2>
                   <motion.p
                     className="text-gray-600 leading-relaxed text-sm lg:text-base mb-4 lg:mb-6"
@@ -664,7 +682,10 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   Book your Reformer Pilates class directly through our online booking system. Select your preferred
-                  date and time from the available slots below.
+                  date and time from the available slots below.{" "}
+                  <Link href="/pilates-grantham" className="text-purple-700 hover:underline font-medium">
+                    Learn more about Pilates in Grantham →
+                  </Link>
                 </motion.p>
               </motion.div>
 
@@ -703,7 +724,7 @@ export default function HomePage() {
                   >
                     <img
                       src="/images/mat_based_pilates.png"
-                      alt="Mat Pilates Studio"
+                      alt="Mat Pilates studio in Grantham"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </motion.div>

@@ -14,6 +14,7 @@ import { Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import BookwhenCalendar from "@/components/bookwhen-calendar"
 import { ReCaptchaProvider } from "@/components/recaptcha-provider"
+import { siteConfig } from "@/lib/site"
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -143,7 +144,9 @@ function ContactForm() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Phone</h3>
-                      <p className="text-gray-600">Call for appointments and enquiries</p>
+                      <a href={`tel:${siteConfig.phoneTel}`} className="text-teal-700 hover:underline">
+                        {siteConfig.phone}
+                      </a>
                     </div>
                   </div>
 
@@ -153,7 +156,9 @@ function ContactForm() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Email</h3>
-                      <p className="text-gray-600">hello@kstherapyclinic.com</p>
+                      <a href={`mailto:${siteConfig.email}`} className="text-teal-700 hover:underline">
+                        {siteConfig.email}
+                      </a>
                     </div>
                   </div>
 
@@ -163,7 +168,7 @@ function ContactForm() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Location</h3>
-                      <p className="text-gray-600">71 Castlegate, Grantham, NG31 6SQ</p>
+                      <p className="text-gray-600">{siteConfig.address.full}</p>
                     </div>
                   </div>
 
@@ -175,6 +180,26 @@ function ContactForm() {
                       <h3 className="font-semibold text-gray-900">Hours</h3>
                       <p className="text-gray-600">Flexible appointments available</p>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Find Us</CardTitle>
+                  <CardDescription>Keystone Sports Therapy, Grantham</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="rounded-lg overflow-hidden h-64">
+                    <iframe
+                      title="Keystone Sports Therapy location in Grantham"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(siteConfig.address.full)}&hl=en&z=15&output=embed`}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
                   </div>
                 </CardContent>
               </Card>

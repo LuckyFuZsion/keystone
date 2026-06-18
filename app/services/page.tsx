@@ -297,7 +297,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src="/images/reformer.png" alt="Reformer Pilates" fill className="object-cover" />
+                    <Image src="/images/reformer.png" alt="Reformer Pilates classes in Grantham" fill className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">

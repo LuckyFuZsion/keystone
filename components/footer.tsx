@@ -1,13 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Mail, MapPin, Clock, Facebook, Instagram } from "lucide-react"
+import { Mail, MapPin, Clock, Facebook, Instagram, Phone } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
 import Image from "next/image"
 import { useSuppressHydration } from "@/hooks/use-suppress-hydration"
+import { siteConfig } from "@/lib/site"
 
 export default function Footer() {
   const isClient = useSuppressHydration()
@@ -27,13 +28,25 @@ export default function Footer() {
               READY TO BEGIN YOUR JOURNEY?
             </motion.h2>
 
-            <StaggerContainer className="grid md:grid-cols-3 gap-8 mb-8">
+            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+              <motion.div variants={staggerItem} className="text-center">
+                <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+                  <Phone className="w-6 h-6 mx-auto mb-3 text-gray-300" />
+                </motion.div>
+                <h4 className="font-medium text-sm mb-2 tracking-wide">PHONE</h4>
+                <a href={`tel:${siteConfig.phoneTel}`} className="text-gray-300 text-sm hover:text-white transition-colors">
+                  {siteConfig.phone}
+                </a>
+              </motion.div>
+
               <motion.div variants={staggerItem} className="text-center">
                 <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
                   <Mail className="w-6 h-6 mx-auto mb-3 text-gray-300" />
                 </motion.div>
                 <h4 className="font-medium text-sm mb-2 tracking-wide">EMAIL</h4>
-                <p className="text-gray-300 text-sm">hello@kstherapyclinic.com</p>
+                <a href={`mailto:${siteConfig.email}`} className="text-gray-300 text-sm hover:text-white transition-colors">
+                  {siteConfig.email}
+                </a>
               </motion.div>
 
               <motion.div variants={staggerItem} className="text-center">
@@ -41,7 +54,7 @@ export default function Footer() {
                   <MapPin className="w-6 h-6 mx-auto mb-3 text-gray-300" />
                 </motion.div>
                 <h4 className="font-medium text-sm mb-2 tracking-wide">LOCATION</h4>
-                <p className="text-gray-300 text-sm">71 Castlegate, Grantham, NG31 6SQ</p>
+                <p className="text-gray-300 text-sm">{siteConfig.address.full}</p>
               </motion.div>
 
               <motion.div variants={staggerItem} className="text-center">
@@ -61,7 +74,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Link href="https://facebook.com/Keystonesportstherapy" target="_blank" rel="noopener noreferrer">
+              <Link href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer">
                 <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -71,7 +84,7 @@ export default function Footer() {
                 </motion.div>
               </Link>
               
-              <Link href="https://instagram.com/keystone_sports_therapY" target="_blank" rel="noopener noreferrer">
+              <Link href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer">
                 <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}

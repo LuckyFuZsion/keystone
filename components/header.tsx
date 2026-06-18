@@ -162,6 +162,7 @@ export default function Header() {
 
   const navigationLinks = [
     { href: "/", label: "Home" },
+    { href: "/pilates-grantham", label: "Pilates Grantham" },
     { href: "/owner", label: "Owner" },
     { href: "/services", label: "Our Services" },
     { href: "/gallery", label: "Gallery" },
