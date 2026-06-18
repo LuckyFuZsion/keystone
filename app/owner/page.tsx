@@ -1,5 +1,6 @@
 import { Award, Heart, Users, Star, Clock } from "lucide-react"
 import Image from "next/image"
+import { images } from "@/lib/images"
 
 export default function OwnerPage() {
   return (
@@ -14,10 +15,12 @@ export default function OwnerPage() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nutrition_advice-EnUdEB7VC2I8Dw51Ggn8kgkjKd874j.jpeg"
+                    src={images.owner}
                     alt="Nasreen Alexandra Davison - Owner"
                     width={400}
                     height={500}
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    loading="lazy"
                     className="rounded-lg shadow-lg"
                   />
                 </div>

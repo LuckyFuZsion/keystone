@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
+import { images, imageSizes } from "@/lib/images"
 
 // Utility functions
 function quickApply(str, fn, ele, options = {}) {
@@ -194,10 +195,12 @@ export default function Header() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7324757115_9404d9ed-960c-438d-ada9-e734da33c769-BcpXNSMgOJCsC3SRdl3br0GIKD64pA.png"
+                  src={images.logo}
                   alt="Keystone Sports Therapy Logo - Teal diamond with white K"
                   width={162}
                   height={162}
+                  sizes={imageSizes.logo}
+                  priority
                   className="filter brightness-0 invert"
                 />
               </motion.div>
@@ -236,10 +239,12 @@ export default function Header() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7324757115_9404d9ed-960c-438d-ada9-e734da33c769-BcpXNSMgOJCsC3SRdl3br0GIKD64pA.png"
+                  src={images.logo}
                   alt="Keystone Sports Therapy Logo"
                   width={80}
                   height={80}
+                  sizes="80px"
+                  priority
                   className="filter brightness-0 invert"
                 />
               </motion.div>

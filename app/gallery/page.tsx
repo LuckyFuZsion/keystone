@@ -4,11 +4,12 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
+import { images, imageSizes } from "@/lib/images"
 
 export default function GalleryPage() {
   const galleryItems = [
     {
-      src: "/images/sports_massage.png",
+      src: images.sportsMassage,
       alt: "Sports Massage Therapy",
       title: "Sports Massage Therapy",
       description: "Professional sports massage and rehabilitation",
@@ -26,7 +27,7 @@ export default function GalleryPage() {
       description: "Energizing group sessions in our modern studio",
     },
     {
-      src: "/images/personal_training.png",
+      src: images.personalTraining,
       alt: "Personal Training",
       title: "Personal Training",
       description: "Customised fitness programmes and coaching",
@@ -38,13 +39,13 @@ export default function GalleryPage() {
       description: "Professional equipment for injury recovery",
     },
     {
-      src: "/images/reformer.png",
+      src: images.reformer,
       alt: "Reformer Pilates",
       title: "Reformer Pilates Studio",
       description: "State-of-the-art Align Pilates equipment",
     },
     {
-      src: "/images/mat_based_pilates.png",
+      src: images.matPilates,
       alt: "Mat Based Pilates",
       title: "Mat Based Pilates",
       description: "APPI qualified Pilates instruction",
@@ -62,13 +63,13 @@ export default function GalleryPage() {
       description: "Comprehensive movement and injury assessment",
     },
     {
-      src: "/images/nutrition_advice.png",
+      src: images.nutritionAdvice,
       alt: "Nutrition Advice",
       title: "Nutrition Consultation",
       description: "Personalized nutrition guidance and meal planning",
     },
     {
-      src: "/images/b12_injections.png",
+      src: images.b12Injections,
       alt: "B12 Injections",
       title: "B12 Injections",
       description: "Vitamin B12 injections for energy and wellness",
@@ -109,6 +110,8 @@ export default function GalleryPage() {
                       alt={item.alt}
                       width={400}
                       height={300}
+                      sizes={imageSizes.gallery}
+                      loading="lazy"
                       className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <motion.div

@@ -5,10 +5,12 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import AnimatedSection from "@/components/animated-section"
 import StaggerContainer, { staggerItem } from "@/components/stagger-container"
 import BookwhenCalendarWrapper from "@/components/bookwhen-calendar-wrapper"
+import { images, imageSizes } from "@/lib/images"
 import { useState, useRef, useEffect } from "react"
 
 export default function HomePage() {
@@ -145,12 +147,13 @@ export default function HomePage() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_513eebfd-00c1-45ce-b5a4-5fedaa085874-01fdb51d-a1138f65-60589cc5-046f2d0b-d5589021-632f65d8-8599bf4e-bd729e50.jpg-d4AjWFatn3d7rx6AaNu6YmflahSPdz.jpeg"
+                <Image
+                  src={images.sportsMassageHero}
                   alt="Sports Massage Therapy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
+                  fill
+                  sizes={imageSizes.hero}
+                  priority
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
@@ -170,12 +173,13 @@ export default function HomePage() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.img
-                  src="/images/personal_training.png"
+                <Image
+                  src={images.personalTraining}
                   alt="Personal Training"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
+                  fill
+                  sizes={imageSizes.hero}
+                  loading="lazy"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
@@ -195,12 +199,13 @@ export default function HomePage() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.img
-                  src="/images/reformer.png"
+                <Image
+                  src={images.reformer}
                   alt="Reformer Pilates classes in Grantham"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
+                  fill
+                  sizes={imageSizes.hero}
+                  loading="lazy"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
                 <motion.div
@@ -498,35 +503,35 @@ export default function HomePage() {
                   {/* First set of services */}
                   {[
                     {
-                      src: "/images/sports_massage.png",
+                      src: images.sportsMassage,
                       title: "SPORTS MASSAGE THERAPY",
                       description: "Professional sports massage therapy for injury recovery, muscle tension relief, and performance enhancement.",
                       price: "From £60",
                       color: "teal",
                     },
                     {
-                      src: "/images/personal_training.png",
+                      src: images.personalTraining,
                       title: "PERSONAL TRAINING",
                       description: "Customised training programmes with flexible packages designed to meet your individual fitness goals.",
                       price: "From £50",
                       color: "blue",
                     },
                     {
-                      src: "/images/reformer.png",
+                      src: images.reformer,
                       title: "REFORMER PILATES",
                       description: "Premium Reformer Pilates using state-of-the-art Align Pilates equipment at our Grantham clinic.",
                       price: "From £20",
                       color: "purple",
                     },
                     {
-                      src: "/images/nutrition_advice.png",
+                      src: images.nutritionAdvice,
                       title: "NUTRITION ADVICE",
                       description: "Personalised nutrition guidance and meal planning with comprehensive dietary education.",
                       price: "From £60",
                       color: "orange",
                     },
                     {
-                      src: "/images/b12_injections.png",
+                      src: images.b12Injections,
                       title: "B12 INJECTIONS",
                       description: "Vitamin B12 injections for energy and wellness with immune system support benefits.",
                       price: "From £30",
@@ -535,35 +540,35 @@ export default function HomePage() {
                   ]
                     .concat([
                       {
-                        src: "/images/sports_massage.png",
+                        src: images.sportsMassage,
                         title: "SPORTS MASSAGE THERAPY",
                         description: "Professional sports massage therapy for injury recovery, muscle tension relief, and performance enhancement.",
                         price: "From £60",
                         color: "teal",
                       },
                       {
-                        src: "/images/personal_training.png",
+                        src: images.personalTraining,
                         title: "PERSONAL TRAINING",
                         description: "Customised training programmes with flexible packages designed to meet your individual fitness goals.",
                         price: "From £50",
                         color: "blue",
                       },
                       {
-                        src: "/images/reformer.png",
+                        src: images.reformer,
                         title: "REFORMER PILATES",
                         description: "Premium Reformer Pilates using state-of-the-art Align Pilates equipment at our Grantham clinic.",
                         price: "From £20",
                         color: "purple",
                       },
                       {
-                        src: "/images/nutrition_advice.png",
+                        src: images.nutritionAdvice,
                         title: "NUTRITION ADVICE",
                         description: "Personalised nutrition guidance and meal planning with comprehensive dietary education.",
                         price: "From £60",
                         color: "orange",
                       },
                       {
-                        src: "/images/b12_injections.png",
+                        src: images.b12Injections,
                         title: "B12 INJECTIONS",
                         description: "Vitamin B12 injections for energy and wellness with immune system support benefits.",
                         price: "From £30",
@@ -588,9 +593,13 @@ export default function HomePage() {
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <img
+                            <Image
                               src={service.src || "/placeholder.svg"}
                               alt={service.title}
+                              width={320}
+                              height={192}
+                              sizes={imageSizes.card}
+                              loading="lazy"
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
@@ -724,10 +733,13 @@ export default function HomePage() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <img
-                      src="/images/mat_based_pilates.png"
+                    <Image
+                      src={images.matPilates}
                       alt="Mat Pilates studio in Grantham"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes={imageSizes.studio}
+                      loading="lazy"
+                      className="object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </motion.div>
                   <motion.div
@@ -735,10 +747,13 @@ export default function HomePage() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <img
-                      src="/images/nutrition_advice.png"
+                    <Image
+                      src={images.nutritionAdvice}
                       alt="Nutrition Consultation"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes={imageSizes.studio}
+                      loading="lazy"
+                      className="object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </motion.div>
                 </motion.div>

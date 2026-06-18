@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import BookwhenCalendarWrapper from "@/components/bookwhen-calendar-wrapper"
 import { FaqJsonLd } from "@/components/json-ld"
 import { siteConfig } from "@/lib/site"
+import { images } from "@/lib/images"
 import { Award, CheckCircle, MapPin, Users } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -101,9 +102,10 @@ export default function PilatesGranthamPage() {
               </div>
               <div className="relative h-80 lg:h-[28rem] rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/reformer.png"
+                  src={images.reformer}
                   alt="Reformer Pilates classes in Grantham at Keystone Sports Therapy"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                   priority
                 />
@@ -181,9 +183,11 @@ export default function PilatesGranthamPage() {
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
               <div className="relative h-72 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/images/mat_based_pilates.png"
+                  src={images.matPilates}
                   alt="Mat Pilates classes in Grantham"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>

@@ -6,6 +6,7 @@ import { Clock, Star, Users, Award, Heart, MapPin, RotateCcw } from "lucide-reac
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import { images } from "@/lib/images"
 
 export default function ServicesPage() {
   const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({})
@@ -47,9 +48,11 @@ export default function ServicesPage() {
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
                     <Image
-                      src="/images/sports_massage.png"
+                      src={images.sportsMassage}
                       alt="Sports Massage Therapy"
                       fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"
                     />
                   </div>
@@ -180,7 +183,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src="/images/personal_training.png" alt="Personal Training" fill className="object-cover" />
+                    <Image src={images.personalTraining} alt="Personal Training" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
@@ -297,7 +300,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src="/images/reformer.png" alt="Reformer Pilates classes in Grantham" fill className="object-cover" />
+                    <Image src={images.reformer} alt="Reformer Pilates classes in Grantham" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
@@ -430,9 +433,11 @@ export default function ServicesPage() {
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
                     <Image
-                      src="/images/nutrition_advice.png"
+                      src={images.nutritionAdvice}
                       alt="Nutrition Advice"
                       fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"
                       style={{ objectPosition: "center 15%" }}
                     />
@@ -548,7 +553,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src="/images/b12_injections.png" alt="B12 Injections" fill className="object-cover" />
+                    <Image src={images.b12Injections} alt="B12 Injections" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-3">

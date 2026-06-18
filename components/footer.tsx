@@ -133,6 +133,8 @@ export default function Footer() {
                       alt="WebFuzsion - Web Design Studio"
                       width={120}
                       height={40}
+                      sizes="120px"
+                      loading="lazy"
                       className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
