@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     template: "%s | Keystone Sports Therapy Grantham",
   },
   description: siteConfig.description,
+  verification: {
+    google: "0HRoMhQg1iu3vQJs7HvWHNQH8UQpv0yUyDGxbdKkOKU",
+  },
   alternates: {
     canonical: "/",
   },
