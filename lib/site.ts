@@ -21,6 +21,19 @@ export const siteConfig = {
     instagram: "https://instagram.com/keystone_sports_therapY",
   },
   bookwhenUrl: "https://bookwhen.com/keystone",
-  description:
-    "Pilates classes in Grantham including Reformer and Mat Pilates. APPI-qualified instruction, sports therapy, and personal training at our Castlegate clinic. Book online.",
+  seo: {
+    title: "Pilates Grantham | Reformer & Mat | Keystone",
+    description:
+      "Reformer & Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Sports therapy and personal training. Book online.",
+    ogTitle: "Pilates Grantham | Reformer & Mat Pilates",
+    ogDescription:
+      "Expert Reformer and Mat Pilates in Grantham. APPI-qualified instruction at our Castlegate clinic. Beginners welcome — book online.",
+    ogImage: "/android-chrome-512x512.png",
+    twitterTitle: "Pilates Grantham | Keystone Sports Therapy",
+    twitterDescription:
+      "Reformer & Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Book your session online.",
+  },
 } as const
+
+// Legacy alias for metadata description
+export const siteDescription = siteConfig.seo.description

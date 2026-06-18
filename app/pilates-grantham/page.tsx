@@ -9,17 +9,25 @@ import { siteConfig } from "@/lib/site"
 import { Award, CheckCircle, MapPin, Users } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Pilates Grantham | Reformer & Mat Pilates Classes",
+  title: "Pilates Grantham | Reformer & Mat Classes",
   description:
-    "Pilates classes in Grantham at Keystone Sports Therapy. Reformer and Mat Pilates with APPI-qualified instruction, Align Pilates equipment, and group or 1:1 sessions. Book online.",
+    "Reformer and Mat Pilates in Grantham. APPI-qualified instruction, Align Pilates equipment, group and 1:1 sessions. Book online at our Castlegate clinic.",
   alternates: {
     canonical: "/pilates-grantham",
   },
   openGraph: {
-    title: "Pilates Grantham | Reformer & Mat Pilates Classes",
+    title: "Pilates Grantham | Reformer & Mat Classes",
     description:
-      "Expert Reformer and Mat Pilates in Grantham. APPI-qualified instruction at our Castlegate clinic. Beginners welcome — book your class online.",
+      "Expert Reformer and Mat Pilates in Grantham. APPI-qualified instruction at our Castlegate clinic. Beginners welcome.",
     url: `${siteConfig.url}/pilates-grantham`,
+    images: [{ url: siteConfig.seo.ogImage, width: 512, height: 512, alt: "Keystone Sports Therapy" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pilates Grantham | Keystone Sports Therapy",
+    description:
+      "Reformer and Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Book online.",
+    images: [siteConfig.seo.ogImage],
   },
 }
 

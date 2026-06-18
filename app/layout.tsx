@@ -15,44 +15,54 @@ const poppins = Poppins({
   variable: "--font-poppins",
 })
 
+const { seo } = siteConfig
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Pilates Grantham | Reformer & Mat Pilates | Keystone Sports Therapy",
-    template: "%s | Keystone Sports Therapy Grantham",
+    default: seo.title,
+    template: "%s | Keystone Sports Therapy",
   },
-  description: siteConfig.description,
+  description: seo.description,
   verification: {
     google: "0HRoMhQg1iu3vQJs7HvWHNQH8UQpv0yUyDGxbdKkOKU",
   },
   alternates: {
     canonical: "/",
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: siteConfig.url,
     siteName: siteConfig.shortName,
-    title: "Pilates Grantham | Reformer & Mat Pilates | Keystone Sports Therapy",
-    description: siteConfig.description,
+    title: seo.ogTitle,
+    description: seo.ogDescription,
+    images: [
+      {
+        url: seo.ogImage,
+        width: 512,
+        height: 512,
+        alt: "Keystone Sports Therapy logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pilates Grantham | Keystone Sports Therapy",
-    description: siteConfig.description,
+    title: seo.twitterTitle,
+    description: seo.twitterDescription,
+    images: [seo.ogImage],
   },
   icons: {
     icon: [
-      {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7324757115_9404d9ed-960c-438d-ada9-e734da33c769-BcpXNSMgOJCsC3SRdl3br0GIKD64pA.png",
-        type: "image/png",
-      },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [
-      {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7324757115_9404d9ed-960c-438d-ada9-e734da33c769-BcpXNSMgOJCsC3SRdl3br0GIKD64pA.png",
-        type: "image/png",
-      },
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [
+      { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
     ],
   },
 }

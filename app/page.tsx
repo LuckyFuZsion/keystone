@@ -76,6 +76,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <h1 className="sr-only">Pilates Classes in Grantham — Keystone Sports Therapy</h1>
+
       {/* Mobile Welcome Section - Only visible on mobile */}
       <section className="py-8 bg-gray-50 lg:hidden">
         <div className="container mx-auto px-4">
@@ -86,7 +88,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <motion.h1
+              <motion.h2
                 className="text-xl font-light text-gray-900 mb-2 tracking-wide"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -94,8 +96,8 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 Pilates Classes in Grantham
-              </motion.h1>
-              <motion.h2
+              </motion.h2>
+              <motion.p
                 className="text-sm font-medium text-gray-500 mb-4 tracking-wide uppercase"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -103,7 +105,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.25 }}
               >
                 Welcome to Keystone Sports Therapy
-              </motion.h2>
+              </motion.p>
               <motion.p
                 className="text-gray-600 leading-relaxed text-sm mb-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -229,7 +231,7 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <motion.h1
+                  <motion.h2
                     className="text-xl lg:text-2xl xl:text-3xl font-light text-gray-900 mb-2 lg:mb-4 tracking-wide"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -237,8 +239,8 @@ export default function HomePage() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                   >
                     Pilates Classes in Grantham
-                  </motion.h1>
-                  <motion.h2
+                  </motion.h2>
+                  <motion.p
                     className="text-sm lg:text-base font-medium text-gray-500 mb-4 lg:mb-6 tracking-wide uppercase"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -246,7 +248,7 @@ export default function HomePage() {
                     transition={{ duration: 0.6, delay: 0.25 }}
                   >
                     Welcome to Keystone Sports Therapy
-                  </motion.h2>
+                  </motion.p>
                   <motion.p
                     className="text-gray-600 leading-relaxed text-sm lg:text-base mb-4 lg:mb-6"
                     initial={{ opacity: 0, y: 20 }}
