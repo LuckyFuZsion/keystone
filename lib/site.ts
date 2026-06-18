@@ -22,7 +22,7 @@ export const siteConfig = {
   },
   bookwhenUrl: "https://bookwhen.com/keystone",
   seo: {
-    title: "Pilates Grantham | Reformer & Mat | Keystone",
+    title: "Pilates & Sports Therapy in Grantham | Keystone Clinic",
     description:
       "Reformer & Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Sports therapy and personal training. Book online.",
     ogTitle: "Pilates Grantham | Reformer & Mat Pilates",
@@ -35,6 +35,19 @@ export const siteConfig = {
     twitterTitle: "Pilates Grantham | Keystone Sports Therapy",
     twitterDescription:
       "Reformer & Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Book your session online.",
+    pageTitles: {
+      gallery: "Sports Therapy & Pilates Gallery in Grantham",
+      contact: "Contact Keystone Sports Therapy — Grantham Clinic",
+      services: "Sports Therapy & Pilates Services in Grantham",
+      book: "Book Sports Therapy & Pilates Online — Grantham",
+      reviews: "Client Reviews — Keystone Sports Therapy Grantham",
+      privacy: "Privacy Policy — Keystone Sports Therapy Grantham",
+      pilates: "Reformer & Mat Pilates Classes — Grantham Clinic",
+      owner: "About Nasreen Davison — APPI Instructor Grantham",
+      features: "Keystone Sports — Special Features in Grantham",
+      holidays: "Opening Hours & Holiday Schedule — Grantham",
+      newPatient: "Patient Intake — Keystone Sports Therapy Grantham",
+    },
   },
 } as const
 

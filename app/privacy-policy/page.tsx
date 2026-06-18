@@ -3,7 +3,7 @@ import Link from "next/link"
 import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: siteConfig.seo.pageTitles.privacy,
   description:
     "Privacy policy for Keystone Sports Therapy in Grantham. How we collect, use, and protect your personal data.",
   alternates: { canonical: "/privacy-policy" },

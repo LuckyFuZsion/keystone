@@ -10,14 +10,14 @@ import { images } from "@/lib/images"
 import { Award, CheckCircle, MapPin, Users } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Pilates Grantham",
+  title: siteConfig.seo.pageTitles.pilates,
   description:
     "Reformer and Mat Pilates in Grantham. APPI-qualified instruction, Align Pilates equipment, group and 1:1 sessions. Book online at our Castlegate clinic.",
   alternates: {
     canonical: "/pilates-grantham",
   },
   openGraph: {
-    title: "Pilates Grantham",
+    title: siteConfig.seo.pageTitles.pilates,
     description:
       "Expert Reformer and Mat Pilates in Grantham. APPI-qualified instruction at our Castlegate clinic. Beginners welcome.",
     url: `${siteConfig.url}/pilates-grantham`,
