@@ -8,6 +8,13 @@ export const images = {
   matPilates: "/images/mat_based_pilates.webp",
   nutritionAdvice: "/images/nutrition_advice.webp",
   b12Injections: "/images/b12_injections.webp",
+  gallery: {
+    cupping: "/images/gallery/cupping.webp",
+    groupFitness: "/images/gallery/group_fitness.webp",
+    rehabEquipment: "/images/gallery/rehab_equipment.webp",
+    cuppingLegs: "/images/gallery/cupping_legs.webp",
+    assessment: "/images/gallery/assessment.webp",
+  },
 } as const
 
 export const imageDimensions = {
@@ -20,6 +27,13 @@ export const imageDimensions = {
   sportsMassage: { width: 640, height: 480 },
   b12Injections: { width: 640, height: 480 },
   owner: { width: 400, height: 500 },
+  gallery: {
+    cupping: { width: 1200, height: 900 },
+    groupFitness: { width: 828, height: 1792 },
+    rehabEquipment: { width: 1200, height: 1120 },
+    cuppingLegs: { width: 563, height: 1000 },
+    assessment: { width: 1200, height: 1600 },
+  },
 } as const
 
 export const imageSizes = {
@@ -30,3 +44,8 @@ export const imageSizes = {
   logoDesktop: "162px",
   logoMobile: "80px",
 } as const
+
+/** Absolute URL for schema.org and Open Graph */
+export function absoluteImageUrl(path: string, siteUrl: string) {
+  return `${siteUrl}${path}`
+}

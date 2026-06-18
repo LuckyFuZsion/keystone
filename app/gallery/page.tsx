@@ -15,13 +15,13 @@ export default function GalleryPage() {
       description: "Professional sports massage and rehabilitation",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_eeb190fd-338b-479b-a3e6-da262a248950-aadef4dc-c1bfac1c-10e999d1-79991ee2-33e6cb56-f95d5c92-af98378b-11a25a12.jpg-yLKAKEqFAF45G1QdG2e66KJEDhkFxR.jpeg",
+      src: images.gallery.cupping,
       alt: "Cupping Therapy",
       title: "Cupping Therapy",
       description: "Traditional cupping therapy for muscle recovery",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_839c4e14-e0ca-4fb5-9a1c-e4b63ecb49a3-806a6a75-1920w.jpg-d9K0zddKsbf2lIjZO6TCc9ijsJNuka.jpeg",
+      src: images.gallery.groupFitness,
       alt: "Group Fitness Class",
       title: "Group Fitness Classes",
       description: "Energizing group sessions in our modern studio",
@@ -33,7 +33,7 @@ export default function GalleryPage() {
       description: "Customised fitness programmes and coaching",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_64a2fd66-132d-4230-9b15-99f4485af97e-3d940cc4-a097ea1a-7a32b3c0-5c43e274-cefb1dba.jpg-HkNwzybdVD4TK59lGq1THJlgTHhKUg.jpeg",
+      src: images.gallery.rehabEquipment,
       alt: "Rehabilitation Equipment",
       title: "Rehabilitation Equipment",
       description: "Professional equipment for injury recovery",
@@ -51,13 +51,13 @@ export default function GalleryPage() {
       description: "APPI qualified Pilates instruction",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_60e6a4f2-6392-40a2-b567-3afee8ab75fa-ffec25d7-1000h.jpg-maSh7ppc9QvI4o4lGaRQpUwZnbxwOX.jpeg",
+      src: images.gallery.cuppingLegs,
       alt: "Cupping Therapy on Legs",
       title: "Specialized Cupping",
       description: "Targeted cupping therapy for lower body",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3300927_8dd9049e-cd0d-4a4e-84f1-8769b5963af4-551e5e46-7216c8b1-fe9609f3-edd30bbf-0f6d2687.jpg-beCCKBKaabBNYWcWRsb2qTryXTQiI7.jpeg",
+      src: images.gallery.assessment,
       alt: "Biomechanical Assessment",
       title: "Assessment & Analysis",
       description: "Comprehensive movement and injury assessment",

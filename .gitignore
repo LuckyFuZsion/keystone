@@ -32,6 +32,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local image sources (run npm run optimize-images to generate public WebP)
+/assets/image-sources/
+
+# favicon generator archives
+/public/favicon_io*.zip
+/public/favicon_io_extracted/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

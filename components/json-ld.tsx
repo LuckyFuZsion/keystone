@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site"
+import { absoluteImageUrl, images } from "@/lib/images"
 
 type JsonLdProps = {
   data: Record<string, unknown> | Record<string, unknown>[]
@@ -14,7 +15,7 @@ export function JsonLd({ data }: JsonLdProps) {
 }
 
 export function LocalBusinessJsonLd() {
-  const { name, url, email, phone, phoneTel, address, geo, social } = siteConfig
+  const { name, url, email, phoneTel, address, geo, social } = siteConfig
 
   return (
     <JsonLd
@@ -25,7 +26,7 @@ export function LocalBusinessJsonLd() {
         url,
         email,
         telephone: phoneTel,
-        image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7324757115_9404d9ed-960c-438d-ada9-e734da33c769-BcpXNSMgOJCsC3SRdl3br0GIKD64pA.png",
+        image: absoluteImageUrl(images.logo, url),
         address: {
           "@type": "PostalAddress",
           streetAddress: address.street,
