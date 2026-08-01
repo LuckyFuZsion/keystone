@@ -264,19 +264,22 @@ export default function Header() {
                 exit="closed"
                 className="lg:hidden overflow-hidden bg-gray-900 border-t border-gray-700"
               >
-                <div className="py-4 space-y-4">
+                <nav
+                  className="py-4 space-y-1 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain"
+                  aria-label="Mobile"
+                >
                   {navigationLinks.map((link, index) => (
                     <motion.div
                       key={link.href}
                       variants={linkVariants}
                       initial="closed"
                       animate="open"
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.05 }}
                       className="text-center"
                     >
                       <Link
                         href={link.href}
-                        className={`nav-link block text-white hover:text-teal-400 font-medium uppercase tracking-wide text-sm py-2 transition-colors duration-200 ${
+                        className={`nav-link block text-white hover:text-teal-400 font-medium uppercase tracking-wide text-sm py-2.5 transition-colors duration-200 ${
                           pathname === link.href ? "active" : ""
                         }`}
                         onClick={() => setIsMenuOpen(false)}
@@ -285,7 +288,7 @@ export default function Header() {
                       </Link>
                     </motion.div>
                   ))}
-                </div>
+                </nav>
               </motion.div>
             )}
           </AnimatePresence>

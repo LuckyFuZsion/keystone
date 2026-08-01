@@ -3,8 +3,8 @@ export const siteConfig = {
   shortName: "Keystone Sports Therapy",
   url: "https://www.kstherapyclinic.com",
   email: "hello@kstherapyclinic.com",
-  phone: "07398 989425",
-  phoneTel: "+447398989425",
+  phone: "07432 555508",
+  phoneTel: "+447432555508",
   address: {
     street: "71 Castlegate",
     city: "Grantham",
