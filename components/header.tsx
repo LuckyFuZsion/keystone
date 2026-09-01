@@ -167,7 +167,7 @@ export default function Header() {
     { href: "/owner", label: "Owner" },
     { href: "/services", label: "Our Services" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/reviews", label: "Customer Reviews" },
+    { href: "/blog", label: "Blog" },
     { href: "/book", label: "Book Appointment" },
     { href: "/new-patient", label: "New Patient Form" },
     { href: "/contact", label: "Contact Us" },

@@ -1,5 +1,6 @@
 import { Award, Heart, Users, Star, Clock } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { images } from "@/lib/images"
 
 export default function OwnerPage() {
@@ -16,7 +17,7 @@ export default function OwnerPage() {
                 <div>
                   <Image
                     src={images.owner}
-                    alt="Nasreen Alexandra Davison - Owner"
+                    alt="Nasreen Alexandra Davison, APPI-qualified Pilates instructor and sports therapist in Grantham"
                     width={400}
                     height={500}
                     sizes="(max-width: 768px) 100vw, 400px"
@@ -30,9 +31,11 @@ export default function OwnerPage() {
                     <p>
                       My name is Nasreen Alexandra Davison and I am a qualified Advanced Personal Trainer (Level 4),
                       Sports Massage Therapist (Level 4) and Exercise Referral Specialist with a focus on Low Back Pain.
-                      I am also an experienced APPI (Australian Physiotherapy & Pilates Institute) qualified Pilates
-                      Instructor, teaching both Mat based and Reformer Pilates, tailoring the exercises to the specific
-                      needs of my clients.
+                      I am also an experienced APPI (Australian Physiotherapy & Pilates Institute) qualified{" "}
+                      <Link href="/pilates-grantham" className="text-teal-700 hover:text-teal-800 underline">
+                        Pilates Instructor, teaching both Mat based and Reformer Pilates
+                      </Link>
+                      , tailoring the exercises to the specific needs of my clients.
                     </p>
                     <p>
                       I set up Keystone Sports Therapy to help clients return to good functional movement and activities

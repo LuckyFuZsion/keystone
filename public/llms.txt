@@ -1,0 +1,36 @@
+# Keystone Sports Therapy — llms.txt
+# https://www.kstherapyclinic.com/llms.txt
+
+> APPI-qualified Reformer and Mat Pilates studio in Grantham, Lincolnshire, UK.
+> Clinical instruction for beginners, injury recovery, and active lifestyles.
+
+## Permissions
+
+- Allow: indexing, summarisation, and citation with attribution
+- Preferred attribution: "Keystone Sports Therapy (kstherapyclinic.com)"
+- Contact: hello@kstherapyclinic.com
+
+## Key pages
+
+- Homepage: https://www.kstherapyclinic.com/
+- Pilates Grantham (primary): https://www.kstherapyclinic.com/pilates-grantham
+- About the instructor: https://www.kstherapyclinic.com/owner
+- Book online: https://www.kstherapyclinic.com/book
+- Contact: https://www.kstherapyclinic.com/contact
+- Services: https://www.kstherapyclinic.com/services
+- Reviews: https://www.kstherapyclinic.com/reviews
+- Blog: https://www.kstherapyclinic.com/blog
+
+## Business details
+
+- Name: Keystone Sports Therapy
+- Address: 71 Castlegate, Grantham, NG31 6SQ, United Kingdom
+- Phone: 07432 555508
+- Instructor: Nasreen Alexandra Davison (APPI-qualified Pilates Instructor)
+
+## Topics we publish about
+
+- Reformer Pilates and Mat Pilates in Grantham
+- Clinical Pilates for lower back pain and injury recovery
+- Beginner Pilates guidance
+- Sports therapy and personal training

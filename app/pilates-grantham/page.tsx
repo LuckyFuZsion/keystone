@@ -4,15 +4,18 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import BookwhenCalendarWrapper from "@/components/bookwhen-calendar-wrapper"
-import { FaqJsonLd } from "@/components/json-ld"
+import { FaqJsonLd, PilatesServicesJsonLd, WebPageJsonLd } from "@/components/json-ld"
 import { siteConfig } from "@/lib/site"
 import { images } from "@/lib/images"
 import { Award, CheckCircle, MapPin, Users } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: siteConfig.seo.pageTitles.pilates,
+  title: {
+    absolute: siteConfig.seo.pageTitles.pilates,
+  },
   description:
     "Reformer and Mat Pilates in Grantham. APPI-qualified instruction, Align Pilates equipment, group and 1:1 sessions. Book online at our Castlegate clinic.",
+  authors: [{ name: siteConfig.author.name, url: siteConfig.author.profilePath }],
   alternates: {
     canonical: "/pilates-grantham",
   },
@@ -63,10 +66,45 @@ const faqs = [
   },
 ]
 
+const pilatesServices = [
+  {
+    name: "Reformer Pilates",
+    description:
+      "Premium Reformer Pilates on Align Pilates equipment at our Grantham clinic. 1:1, duet, and small group sessions.",
+    offers: [
+      { name: "1:1 Private Session (60 mins)", price: "65" },
+      { name: "5 Sessions", price: "310" },
+      { name: "10 Sessions", price: "600" },
+      { name: "Small Group Class (single)", price: "20" },
+      { name: "Small Group Class (8-session pass)", price: "150" },
+    ],
+  },
+  {
+    name: "Mat Pilates",
+    description:
+      "Mat-based Pilates classes taught by an APPI-qualified instructor at our Grantham clinic.",
+    offers: [
+      { name: "Group Mat Class", price: "20", description: "Contact for current schedule and pricing" },
+    ],
+  },
+]
+
+const pageUrl = `${siteConfig.url}/pilates-grantham`
+const { pilatesGranthamPublished, pilatesGranthamModified } = siteConfig.contentDates
+
 export default function PilatesGranthamPage() {
   return (
     <>
-      <FaqJsonLd faqs={faqs} />
+      <WebPageJsonLd
+        url={pageUrl}
+        name="Pilates Classes in Grantham"
+        description="Reformer and Mat Pilates in Grantham with APPI-qualified instruction at Keystone Sports Therapy."
+        datePublished={pilatesGranthamPublished}
+        dateModified={pilatesGranthamModified}
+        speakableSelectors={[".speakable-summary", ".speakable-why", ".speakable-faq-first"]}
+      />
+      <FaqJsonLd faqs={faqs} url={pageUrl} />
+      <PilatesServicesJsonLd services={pilatesServices} />
 
       <div className="min-h-screen bg-white">
         {/* Hero */}
@@ -74,10 +112,26 @@ export default function PilatesGranthamPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-6 tracking-wide">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-4 tracking-wide">
                   Pilates Classes in Grantham
                 </h1>
-                <p className="text-gray-600 leading-relaxed text-base md:text-lg mb-4">
+                <p className="text-sm text-gray-500 mb-4">
+                  By{" "}
+                  <Link href={siteConfig.author.profilePath} className="text-teal-700 hover:underline">
+                    {siteConfig.author.name}
+                  </Link>
+                  , {siteConfig.author.jobTitle}
+                  {" · "}
+                  <time dateTime={pilatesGranthamModified}>
+                    Updated{" "}
+                    {new Date(pilatesGranthamModified).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </time>
+                </p>
+                <p className="speakable-summary text-gray-600 leading-relaxed text-base md:text-lg mb-4">
                   Looking for Pilates in Grantham? At Keystone Sports Therapy, we offer expert{" "}
                   <strong>Reformer Pilates</strong> and <strong>Mat Pilates</strong> at our clinic on Castlegate —
                   tailored to your body, your goals, and your experience level.
@@ -114,6 +168,67 @@ export default function PilatesGranthamPage() {
           </div>
         </section>
 
+        {/* What is Pilates */}
+        <section className="py-16 border-t border-gray-100">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-wide">
+                What Is Pilates?
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Pilates is a low-impact exercise method that builds core strength, flexibility, posture, and controlled
+                movement through precise, breath-coordinated exercises. Developed by Joseph Pilates, it is widely used for
+                general fitness, injury rehabilitation, and back pain management. The{" "}
+                <a
+                  href="https://www.nhs.uk/live-well/exercise/pilates-and-yoga/"
+                  className="text-teal-700 hover:underline"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  NHS recommends Pilates and yoga
+                </a>{" "}
+                as accessible ways to improve strength and flexibility at any age.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                At our Grantham studio, Pilates is taught by an APPI-qualified instructor — meaning exercises follow
+                physiotherapy-informed principles and can be adapted for beginners, pre- and postnatal clients, and
+                those recovering from injury.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Why choose us */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-wide">
+                Why Choose Pilates in Grantham at Keystone?
+              </h2>
+              <p className="speakable-why text-gray-600 leading-relaxed mb-6">
+                Keystone Sports Therapy offers clinical-grade Pilates in the heart of Grantham — not a generic fitness
+                class, but instruction tailored to your body by a qualified APPI instructor with over 10 years of
+                experience in sports therapy, personal training, and rehabilitation.
+              </p>
+              <ul className="space-y-2 text-gray-700 mb-6">
+                {[
+                  "APPI-qualified clinical instruction — exercises adapted to your ability and any injuries",
+                  "Premium Align Pilates reformer equipment in a dedicated Castlegate studio",
+                  "Small group classes capped at five people for individual attention",
+                  "1:1 and duet Reformer sessions for personalised progression",
+                  "Specialist programmes for lower back pain and injury recovery",
+                  "Convenient location serving Grantham, Stamford, and South Kesteven villages",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Reformer Pilates */}
         <section className="py-16">
           <div className="container mx-auto px-4">
@@ -121,9 +236,14 @@ export default function PilatesGranthamPage() {
               <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-wide text-center">
                 Reformer Pilates in Grantham
               </h2>
-              <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+              <p className="text-gray-600 text-center max-w-3xl mx-auto mb-6">
                 Our premium Reformer Pilates studio features the latest Align Pilates machines — giving you precise,
                 spring-loaded resistance for a full-body workout that builds strength, flexibility, and control.
+              </p>
+              <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+                Reformer Pilates is especially popular for building core strength without high impact, making it a
+                practical choice for people managing back pain, returning from injury, or looking for a structured
+                alternative to gym-based training in Grantham.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -200,9 +320,23 @@ export default function PilatesGranthamPage() {
                   excellent way to build core stability, improve posture, and develop functional strength — whether as a
                   standalone practice or alongside Reformer sessions.
                 </p>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed mb-4">
                   All Mat Pilates sessions at our Grantham clinic are taught by a qualified APPI instructor, ensuring
                   exercises are adapted to your individual needs and any existing injuries or conditions.
+                </p>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  Research published by{" "}
+                  <a
+                    href="https://www.nhs.uk/conditions/back-pain/"
+                    className="text-teal-700 hover:underline"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    the NHS on back pain
+                  </a>{" "}
+                  notes that staying active with appropriate exercise is one of the most effective ways to manage
+                  ongoing lower back discomfort — which is why many of our clients combine Mat and Reformer work as
+                  part of a structured recovery plan.
                 </p>
               </div>
             </div>
@@ -261,6 +395,48 @@ export default function PilatesGranthamPage() {
               <Link href="/owner" className="text-teal-700 hover:text-teal-800 font-medium underline">
                 Learn more about Nasreen →
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* How to get started */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-wide">
+                How Do I Get Started with Pilates in Grantham?
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Starting Pilates at Keystone Sports Therapy is straightforward. Complete beginners are welcome — no prior
+                experience or equipment is needed. Here is how to book your first session:
+              </p>
+              <ol className="list-decimal list-inside space-y-3 text-gray-700 text-sm mb-6">
+                <li>
+                  Browse available classes on our{" "}
+                  <Link href="/book" className="text-teal-700 hover:underline">
+                    online booking page
+                  </Link>{" "}
+                  or call{" "}
+                  <a href={`tel:${siteConfig.phoneTel}`} className="text-teal-700 hover:underline">
+                    {siteConfig.phone}
+                  </a>
+                  .
+                </li>
+                <li>Choose a Reformer group class, 1:1 session, or Mat Pilates class that suits your schedule.</li>
+                <li>Wear comfortable fitted clothing and grip socks for Reformer sessions (available to buy at the clinic).</li>
+                <li>Arrive at 71 Castlegate, Grantham a few minutes early — your instructor will guide you through everything.</li>
+              </ol>
+              <p className="text-gray-600 text-sm">
+                Not sure which class to pick?{" "}
+                <Link href="/contact" className="text-teal-700 hover:underline">
+                  Contact us
+                </Link>{" "}
+                or read our guide on{" "}
+                <Link href="/blog/reformer-vs-mat-pilates" className="text-teal-700 hover:underline">
+                  Reformer vs Mat Pilates
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </section>
@@ -342,8 +518,8 @@ export default function PilatesGranthamPage() {
                 Pilates Grantham — Frequently Asked Questions
               </h2>
               <div className="space-y-6">
-                {faqs.map((faq) => (
-                  <div key={faq.question}>
+                {faqs.map((faq, index) => (
+                  <div key={faq.question} className={index === 0 ? "speakable-faq-first" : undefined}>
                     <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
                   </div>

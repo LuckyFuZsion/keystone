@@ -5,7 +5,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
-import { LocalBusinessJsonLd } from "@/components/json-ld"
+import { LocalBusinessJsonLd, OrganizationJsonLd } from "@/components/json-ld"
 import { siteConfig } from "@/lib/site"
 
 const poppins = Poppins({
@@ -76,6 +76,7 @@ export default function RootLayout({
     <html lang="en-GB">
       <body className={`${poppins.variable} font-sans`}>
         <LocalBusinessJsonLd />
+        <OrganizationJsonLd />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

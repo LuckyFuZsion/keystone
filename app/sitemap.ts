@@ -15,6 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy-policy",
     "/features",
     "/holidays",
+    "/blog",
+    "/blog/reformer-vs-mat-pilates",
+    "/blog/pilates-for-lower-back-pain-grantham",
+    "/blog/first-pilates-class",
   ]
 
   return routes.map((route) => ({

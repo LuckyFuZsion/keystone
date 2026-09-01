@@ -6,7 +6,7 @@ import { Clock, Star, Users, Award, Heart, MapPin, RotateCcw } from "lucide-reac
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { images } from "@/lib/images"
+import { images, imageDimensions } from "@/lib/images"
 
 export default function ServicesPage() {
   const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({})
@@ -49,7 +49,7 @@ export default function ServicesPage() {
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
                     <Image
                       src={images.sportsMassage}
-                      alt="Sports Massage Therapy"
+                      alt="Sports massage therapy session at Keystone Sports Therapy, Grantham"
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -147,9 +147,18 @@ export default function ServicesPage() {
                           <span>GP/Medical referral letter</span>
                         </div>
                       </div>
-                      <p className="text-xs text-blue-600 font-medium mt-3">
-                        15% Blue Light discount on all massage treatments until 31 May 2026 (card verification required).
-                      </p>
+                      <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-100 flex items-center gap-3">
+                        <Image
+                          src={images.blueLightCard}
+                          alt="Blue Light Card — NHS and emergency services discount"
+                          width={imageDimensions.blueLightCard.width}
+                          height={imageDimensions.blueLightCard.height}
+                          className="w-24 h-auto flex-shrink-0 rounded"
+                        />
+                        <p className="text-xs text-blue-600 font-medium">
+                          15% Blue Light discount on all massage treatments until 31 May 2026 (card verification required).
+                        </p>
+                      </div>
                       <p className="text-xs text-gray-600 italic mt-2">
                         No additional cost for Dry Needling, Acupuncture, Cupping or Taping & Strapping. GP/medical referral letter available as part of the service fee.
                       </p>
@@ -183,7 +192,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src={images.personalTraining} alt="Personal Training" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                    <Image src={images.personalTraining} alt="Personal training session at Keystone Sports Therapy, Grantham" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
@@ -300,7 +309,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src={images.reformer} alt="Reformer Pilates classes in Grantham" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                    <Image src={images.reformer} alt="Reformer Pilates studio with Align equipment at Keystone Sports Therapy, Grantham" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
@@ -308,7 +317,14 @@ export default function ServicesPage() {
                     </div>
                     <CardTitle className="text-lg">Reformer Pilates 1:1</CardTitle>
                     <CardDescription className="text-sm">
-                      Premium Reformer Pilates (Grantham clinic only)
+                      Premium Reformer Pilates (Grantham clinic only).{" "}
+                      <Link
+                        href="/pilates-grantham"
+                        className="text-purple-700 hover:underline"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        View Pilates classes in Grantham
+                      </Link>
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="flex flex-col flex-1">
@@ -434,7 +450,7 @@ export default function ServicesPage() {
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
                     <Image
                       src={images.nutritionAdvice}
-                      alt="Nutrition Advice"
+                      alt="Nutrition advice and meal planning at Keystone Sports Therapy, Grantham"
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -553,7 +569,7 @@ export default function ServicesPage() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="h-64 relative overflow-hidden rounded-t-lg">
-                    <Image src={images.b12Injections} alt="B12 Injections" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                    <Image src={images.b12Injections} alt="Vitamin B12 injections at Keystone Sports Therapy, Grantham" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <CardHeader className="pb-4">
                     <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-3">

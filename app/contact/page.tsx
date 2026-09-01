@@ -129,7 +129,7 @@ function ContactForm() {
             <p className="text-xl text-gray-600">Get in touch to book your consultation</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-stretch">
             {/* Contact Information */}
             <div className="space-y-8">
               <Card>
@@ -330,14 +330,14 @@ function ContactForm() {
             </div>
 
             {/* Booking Calendar */}
-            <div>
-              <Card className="h-full">
-                <CardHeader>
+            <div className="flex h-full flex-col">
+              <Card className="flex h-full min-h-[600px] flex-col lg:min-h-0">
+                <CardHeader className="shrink-0">
                   <CardTitle>Book Your Appointment</CardTitle>
                   <CardDescription>Select a time that works for you</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <BookwhenCalendar />
+                <CardContent className="flex min-h-0 flex-1 flex-col overflow-hidden p-6 pt-0">
+                  <BookwhenCalendar fillHeight className="h-full w-full" />
                 </CardContent>
               </Card>
             </div>

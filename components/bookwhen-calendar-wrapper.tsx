@@ -13,8 +13,9 @@ const BookwhenCalendar = dynamic(() => import("@/components/bookwhen-calendar"),
 
 interface BookwhenCalendarWrapperProps {
   className?: string
+  fillHeight?: boolean
 }
 
-export default function BookwhenCalendarWrapper({ className }: BookwhenCalendarWrapperProps) {
-  return <BookwhenCalendar className={className} />
+export default function BookwhenCalendarWrapper({ className, fillHeight }: BookwhenCalendarWrapperProps) {
+  return <BookwhenCalendar className={className} fillHeight={fillHeight} />
 }

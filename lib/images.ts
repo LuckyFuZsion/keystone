@@ -8,6 +8,7 @@ export const images = {
   matPilates: "/images/mat_based_pilates.webp",
   nutritionAdvice: "/images/nutrition_advice.webp",
   b12Injections: "/images/b12_injections.webp",
+  blueLightCard: "/Blue-Light-Card.webp",
   gallery: {
     cupping: "/images/gallery/cupping.webp",
     groupFitness: "/images/gallery/group_fitness.webp",
@@ -26,6 +27,7 @@ export const imageDimensions = {
   nutritionAdvice: { width: 640, height: 1015 },
   sportsMassage: { width: 640, height: 480 },
   b12Injections: { width: 640, height: 480 },
+  blueLightCard: { width: 1024, height: 512 },
   owner: { width: 400, height: 500 },
   gallery: {
     cupping: { width: 1200, height: 900 },
