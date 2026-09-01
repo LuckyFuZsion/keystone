@@ -234,19 +234,13 @@ export function getBlogPost(slug: BlogPostSlug): BlogPost {
 export function getBlogPostMetadata(slug: BlogPostSlug): Metadata {
   const post = blogPosts[slug]
   const url = `${siteConfig.url}${post.canonicalPath}`
-  const ogImage = post.thumbnail
-    ? {
-        url: post.thumbnail.src,
-        width: post.thumbnail.width,
-        height: post.thumbnail.height,
-        alt: post.thumbnail.alt,
-      }
-    : {
-        url: siteConfig.seo.ogImage,
-        width: siteConfig.seo.ogImageWidth,
-        height: siteConfig.seo.ogImageHeight,
-        alt: siteConfig.seo.ogImageAlt,
-      }
+  const { seo } = siteConfig
+  const ogImage = {
+    url: seo.ogImage,
+    width: seo.ogImageWidth,
+    height: seo.ogImageHeight,
+    alt: seo.ogImageAlt,
+  }
 
   return {
     title: { absolute: post.title },
@@ -256,6 +250,8 @@ export function getBlogPostMetadata(slug: BlogPostSlug): Metadata {
       title: post.ogTitle,
       description: post.ogDescription,
       url,
+      siteName: siteConfig.shortName,
+      locale: "en_GB",
       type: "article",
       publishedTime: post.datePublished,
       authors: [post.author],

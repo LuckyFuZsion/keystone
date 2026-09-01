@@ -8,6 +8,30 @@ export const metadata: Metadata = {
   description:
     "Expert Pilates tips and guides from Keystone Sports Therapy in Grantham. Reformer vs Mat Pilates, back pain, and what to expect at your first class.",
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Pilates & Wellness Insights",
+    description:
+      "Expert Pilates tips and guides from Keystone Sports Therapy in Grantham. Reformer vs Mat Pilates, back pain, and what to expect at your first class.",
+    url: `${siteConfig.url}/blog`,
+    siteName: siteConfig.shortName,
+    locale: "en_GB",
+    type: "website",
+    images: [
+      {
+        url: siteConfig.seo.ogImage,
+        width: siteConfig.seo.ogImageWidth,
+        height: siteConfig.seo.ogImageHeight,
+        alt: siteConfig.seo.ogImageAlt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pilates & Wellness Insights",
+    description:
+      "Expert Pilates tips and guides from Keystone Sports Therapy in Grantham.",
+    images: [siteConfig.seo.ogImage],
+  },
 }
 
 function getBlogGridClass(postCount: number) {

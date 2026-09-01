@@ -35,6 +35,20 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog/first-pilates-class-what-to-expect",
+        destination: "/blog/first-pilates-class",
+        permanent: true,
+      },
+      {
+        source: "/blog/pilates-lower-back-pain-grantham",
+        destination: "/blog/pilates-for-lower-back-pain-grantham",
+        permanent: true,
+      },
+    ]
+  },
   reactStrictMode: false,
 }
 
