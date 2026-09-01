@@ -38,7 +38,7 @@ export function CustomerReviewsSection({
                     : "text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-wide"
                 }
               >
-                {pageTitle ?? "WHAT OUR CLIENTS SAY"}
+                {pageTitle ?? "What do clients say about Keystone Sports Therapy?"}
               </HeadingTag>
               {pageDescription && (
                 <p className="text-xl text-gray-600 mb-6">{pageDescription}</p>

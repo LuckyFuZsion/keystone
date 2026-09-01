@@ -271,6 +271,7 @@ type ArticleJsonLdProps = {
   headline: string
   description: string
   datePublished: string
+  dateModified?: string
   url: string
   authorName?: string
   authorJobTitle?: string
@@ -280,6 +281,7 @@ export function ArticleJsonLd({
   headline,
   description,
   datePublished,
+  dateModified,
   url,
   authorName = "Nasreen Alexandra Davison",
   authorJobTitle = "APPI-qualified Pilates Instructor",
@@ -302,6 +304,7 @@ export function ArticleJsonLd({
           url: siteConfig.url,
         },
         datePublished,
+        ...(dateModified ? { dateModified } : {}),
         mainEntityOfPage: url,
       }}
     />

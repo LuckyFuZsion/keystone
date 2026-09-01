@@ -27,11 +27,13 @@ export const siteConfig = {
     profilePath: "/owner",
   },
   contentDates: {
+    homePublished: "2026-03-01",
+    homeModified: "2026-09-01",
     pilatesGranthamPublished: "2026-03-01",
     pilatesGranthamModified: "2026-09-01",
   },
   seo: {
-    title: "Pilates Grantham | Reformer & Mat Pilates | Keystone Sports Therapy",
+    title: "Pilates Grantham | Reformer & Mat Pilates | Keystone",
     description:
       "Reformer & Mat Pilates in Grantham. APPI-qualified classes at our Castlegate clinic. Sports therapy and personal training. Book online.",
     ogTitle: "Pilates Grantham | Reformer & Mat Pilates",

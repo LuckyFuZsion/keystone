@@ -78,60 +78,6 @@ export default function HomePageContent() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Mobile Welcome Section - Only visible on mobile */}
-      <section className="py-8 bg-gray-50 lg:hidden">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={false}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <motion.h1
-                className="text-xl font-light text-gray-900 mb-2 tracking-wide"
-                initial={false}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Pilates Classes in Grantham
-              </motion.h1>
-              <motion.p
-                className="text-sm font-medium text-gray-500 mb-4 tracking-wide uppercase"
-                initial={false}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.25 }}
-              >
-                Welcome to Keystone Sports Therapy
-              </motion.p>
-              <motion.p
-                className="text-gray-600 leading-relaxed text-sm mb-4"
-                initial={false}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                From sports massage to personal training, we offer a wide range of options including Mat Pilates,
-                Reformer Pilates, Nutrition Advice and Rehabilitation. At Keystone Sports Therapy Grantham, we welcome
-                all levels so whether you're a complete beginner or have been practicing regularly, we offer treatments
-                to suit your particular needs.
-              </motion.p>
-              <motion.p
-                className="text-gray-600 leading-relaxed text-sm"
-                initial={false}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Our experienced therapist Nasreen brings over 10 years of expertise in sports therapy, personal
-                training, and clinical Pilates instruction to help you achieve your health and fitness goals.
-              </motion.p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
       {/* Hero Section with Service Images */}
       <section className="relative pt-8 pb-0 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -231,7 +177,7 @@ export default function HomePageContent() {
               <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-start">
                 {/* Welcome Text */}
                 <motion.div
-                  className="lg:col-span-2 order-1 hidden lg:block"
+                  className="lg:col-span-2 order-1"
                   initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -256,7 +202,7 @@ export default function HomePageContent() {
                     Welcome to Keystone Sports Therapy
                   </motion.p>
                   <motion.p
-                    className="text-gray-600 leading-relaxed text-sm lg:text-base mb-4 lg:mb-6"
+                    className="text-gray-600 leading-relaxed text-sm lg:text-base mb-4 lg:mb-6 speakable-summary"
                     initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
