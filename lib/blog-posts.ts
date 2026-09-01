@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { imageDimensions, images } from "@/lib/images"
 import { siteConfig } from "@/lib/site"
 
 export type BlogPostSlug =
@@ -7,6 +8,13 @@ export type BlogPostSlug =
   | "pilates-for-lower-back-pain-grantham"
 
 export type BlogTocItem = { id: string; label: string }
+
+export type BlogThumbnail = {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
 
 export type BlogPost = {
   slug: BlogPostSlug
@@ -19,6 +27,7 @@ export type BlogPost = {
   author: string
   datePublished: string
   quickAnswer: string
+  thumbnail?: BlogThumbnail
   toc: BlogTocItem[]
   faqs: { question: string; answer: string }[]
   howTo?: { name: string; steps: { name: string; text: string }[] }
@@ -37,6 +46,12 @@ export const blogPosts: Record<BlogPostSlug, BlogPost> = {
       "A step-by-step guide to your first Pilates class: what to wear, what happens, and how beginners are supported at our Grantham studio.",
     author: "Nasreen Alexandra Davison, APPI-qualified Pilates Instructor",
     datePublished: "2026-09-01",
+    thumbnail: {
+      src: images.gallery.groupFitness,
+      alt: "Group fitness class in the modern Keystone Sports Therapy studio, Grantham",
+      width: imageDimensions.gallery.groupFitness.width,
+      height: imageDimensions.gallery.groupFitness.height,
+    },
     quickAnswer:
       "Your first Pilates class will typically start with a short health questionnaire and a chat with your instructor about any injuries or concerns, followed by a class adapted to beginners, focused on correct movement, breathing, and control rather than intensity. Wear fitted, stretchy clothing and socks, and arrive 10–15 minutes early.",
     toc: [
@@ -109,6 +124,12 @@ export const blogPosts: Record<BlogPostSlug, BlogPost> = {
       "A clear, practical comparison of Reformer and Mat Pilates: equipment, intensity, cost, and who each is best for, from an APPI-qualified instructor in Grantham.",
     author: "Nasreen Alexandra Davison, APPI-qualified Pilates Instructor",
     datePublished: "2026-09-01",
+    thumbnail: {
+      src: images.reformer,
+      alt: "Reformer Pilates studio with Align Pilates equipment in Grantham",
+      width: imageDimensions.reformer.width,
+      height: imageDimensions.reformer.height,
+    },
     quickAnswer:
       'Reformer Pilates uses a spring-loaded machine (the "reformer") to add adjustable resistance and support to each movement. Mat Pilates uses only your body weight, gravity, and small equipment like resistance bands or a Pilates ring, performed on a floor mat. Both build core strength, posture, and control. They just get you there through different tools.',
     toc: [
@@ -159,6 +180,12 @@ export const blogPosts: Record<BlogPostSlug, BlogPost> = {
       "How clinical, APPI-qualified Pilates can support lower back pain management, and what a first session looks like at our Grantham clinic.",
     author: "Nasreen Alexandra Davison, APPI-qualified Pilates Instructor",
     datePublished: "2026-09-01",
+    thumbnail: {
+      src: images.gallery.assessment,
+      alt: "Movement and injury assessment at Keystone Sports Therapy clinic, Grantham",
+      width: imageDimensions.gallery.assessment.width,
+      height: imageDimensions.gallery.assessment.height,
+    },
     quickAnswer:
       "Pilates can help some people manage lower back pain by building strength and control in the deep core and postural muscles that support the spine, using slow, controlled movement rather than high-impact exercise. It isn't a guaranteed treatment for every type of back pain, and anyone with a diagnosed condition, recent injury, or acute pain should speak to their GP or a physiotherapist before starting.",
     toc: [
@@ -207,6 +234,19 @@ export function getBlogPost(slug: BlogPostSlug): BlogPost {
 export function getBlogPostMetadata(slug: BlogPostSlug): Metadata {
   const post = blogPosts[slug]
   const url = `${siteConfig.url}${post.canonicalPath}`
+  const ogImage = post.thumbnail
+    ? {
+        url: post.thumbnail.src,
+        width: post.thumbnail.width,
+        height: post.thumbnail.height,
+        alt: post.thumbnail.alt,
+      }
+    : {
+        url: siteConfig.seo.ogImage,
+        width: siteConfig.seo.ogImageWidth,
+        height: siteConfig.seo.ogImageHeight,
+        alt: siteConfig.seo.ogImageAlt,
+      }
 
   return {
     title: { absolute: post.title },
@@ -219,20 +259,13 @@ export function getBlogPostMetadata(slug: BlogPostSlug): Metadata {
       type: "article",
       publishedTime: post.datePublished,
       authors: [post.author],
-      images: [
-        {
-          url: siteConfig.seo.ogImage,
-          width: siteConfig.seo.ogImageWidth,
-          height: siteConfig.seo.ogImageHeight,
-          alt: siteConfig.seo.ogImageAlt,
-        },
-      ],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: post.ogTitle,
       description: post.ogDescription,
-      images: [siteConfig.seo.ogImage],
+      images: [ogImage.url],
     },
   }
 }

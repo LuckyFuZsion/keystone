@@ -12,7 +12,7 @@ Source prompt: `keystone-seo-cursor-prompt.md`
 - [x] **sitemap.xml** — `app/sitemap.ts` auto-generates on build; includes `/pilates-grantham` and all key pages
 - [x] **Title & meta descriptions** — all pages have unique values via `lib/site.ts` and per-route layouts
 - [x] **Canonical tags** — self-referencing canonicals on every page via layout metadata
-- [x] **Heading structure** — one H1 per page (homepage uses `sr-only` H1 + visible H2)
+- [x] **Heading structure** — one visible H1 per page; homepage hero uses responsive H1 (mobile + desktop blocks are mutually exclusive via `lg:hidden` / `hidden lg:block`)
 - [x] **Image alt text** — improved across homepage, services, and gallery (see Phase 4)
 - [x] **Structured data audit** — gaps identified and addressed in Phase 2
 - [x] **Internal linking audit** — header links to `/pilates-grantham` and `/book`; contextual links added in Phase 4
@@ -36,9 +36,10 @@ Source prompt: `keystone-seo-cursor-prompt.md`
 - [x] **Service schema** — `PilatesServicesJsonLd` on `app/pilates-grantham/page.tsx`
   - Reformer Pilates (£65 1:1, £310/5, £600/10, £20 group, £150/8-pass)
   - Mat Pilates
-- [x] **FAQPage schema** — `FaqJsonLd` on `app/pilates-grantham/page.tsx` (6 FAQs from page content)
-- [x] **Review schema** — `ReviewsJsonLd` on homepage + `/reviews` (real Google reviews)
+- [x] **FAQPage schema** — `FaqJsonLd` on `app/pilates-grantham/page.tsx` (6 FAQs; same `faqs` array drives visible content and JSON-LD). Verify in [Rich Results Test](https://search.google.com/test/rich-results) after deploy
+- [x] **Review schema** — `ReviewsJsonLd` on homepage + `/reviews` (real Google reviews; references root `LocalBusiness` by `@id`, no duplicate business node)
 - [x] **AggregateRating** — 5.0 from 3 displayed Google reviews in `lib/reviews.ts` + `LocalBusinessJsonLd` (count matches visible reviews)
+- [ ] **Grow review count** — priority off-site task: GBP review generation. Schema is correct but `reviewCount: 3` with `ratingValue: 5` is thin; Google may discount stars until count grows
 - [ ] **Validate JSON-LD** — test at [Google Rich Results Test](https://search.google.com/test/rich-results) after deploy
 
 ---
@@ -88,15 +89,13 @@ Source prompt: `keystone-seo-cursor-prompt.md`
 ### Routes (scaffolded)
 
 - [x] `/blog` — index page (`app/blog/page.tsx`)
-- [x] `/blog/reformer-vs-mat-pilates` — placeholder (`app/blog/reformer-vs-mat-pilates/page.tsx`)
-- [x] `/blog/pilates-for-lower-back-pain-grantham` — placeholder (`app/blog/pilates-for-lower-back-pain-grantham/page.tsx`)
-- [x] `/blog/first-pilates-class` — placeholder (`app/blog/first-pilates-class/page.tsx`)
+- [x] `/blog/reformer-vs-mat-pilates` — live (`app/blog/reformer-vs-mat-pilates/page.tsx`)
+- [x] `/blog/pilates-for-lower-back-pain-grantham` — live (`app/blog/pilates-for-lower-back-pain-grantham/page.tsx`)
+- [x] `/blog/first-pilates-class` — live (`app/blog/first-pilates-class/page.tsx`)
 - [x] **Sitemap** — blog routes added to `app/sitemap.ts`
 - [x] **Per-post SEO** — title, meta description, H1, canonical, links to `/pilates-grantham` and `/book`
 
-### Content (written, not yet live)
-
-Draft markdown exists in `blog content/`:
+### Content (live)
 
 - [x] Wire up `blog content/reformer-vs-mat-pilates.md` → `/blog/reformer-vs-mat-pilates`
 - [x] Wire up `blog content/pilates-lower-back-pain-grantham.md` → `/blog/pilates-for-lower-back-pain-grantham`
@@ -105,7 +104,28 @@ Draft markdown exists in `blog content/`:
 
 ---
 
-## Off-site / manual tasks (not code)
+## Post-audit gaps (September 2026)
+
+| Gap | Status | Notes |
+|-----|--------|-------|
+| Only 3 reviews in `aggregateRating` | **Off-site priority** | Code matches visible reviews; grow GBP reviews before expecting rich-result stars |
+| Homepage H1 was `sr-only` | **Fixed** | Visible responsive H1 in hero (`components/home-page-content.tsx`) |
+| FAQPage on `/pilates-grantham` | **Present in code** | `<FaqJsonLd faqs={faqs} />` uses same array as visible FAQ section; confirm via Rich Results Test |
+| Canonical on every route | **Present in code** | Each route sets `alternates.canonical` in its layout/page metadata (blog via `getBlogPostMetadata`) |
+| Duplicate LocalBusiness in Review schema | **Fixed** | `ReviewsJsonLd` now references `LOCAL_BUSINESS_ID` only; no second business node |
+
+### Canonical map (self-referencing)
+
+| Route | Canonical source |
+|-------|------------------|
+| `/` | `app/layout.tsx` |
+| `/pilates-grantham` | `app/pilates-grantham/page.tsx` |
+| `/services` | `app/services/layout.tsx` |
+| `/owner` | `app/owner/layout.tsx` |
+| `/blog` + posts | `app/blog/page.tsx`, `lib/blog-posts.ts` |
+| All other public pages | respective `app/*/layout.tsx` or `page.tsx` |
+
+---
 
 - [ ] **Google Business Profile** — claim, verify, keep active with posts and photos
 - [ ] **Google reviews** — actively request reviews from clients (feeds AggregateRating TODO above)

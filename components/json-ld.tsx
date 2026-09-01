@@ -140,14 +140,11 @@ export function ReviewsJsonLd({
         "@graph": aggregate
           ? [
               {
-                "@type": "HealthAndBeautyBusiness",
-                "@id": LOCAL_BUSINESS_ID,
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: aggregate.ratingValue,
-                  reviewCount: aggregate.reviewCount,
-                  bestRating: aggregate.bestRating,
-                },
+                "@type": "AggregateRating",
+                ratingValue: aggregate.ratingValue,
+                reviewCount: aggregate.reviewCount,
+                bestRating: aggregate.bestRating,
+                itemReviewed: { "@id": LOCAL_BUSINESS_ID },
               },
               ...reviewNodes,
             ]

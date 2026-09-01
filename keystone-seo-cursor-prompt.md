@@ -51,36 +51,28 @@ Output this as a markdown checklist with file paths, not just prose.
 
 ## Phase 2 — Structured data (JSON-LD)
 
+**Status: largely complete.** Do not recreate schema that already exists in the root layout.
+
 ```
-Add JSON-LD structured data to this Next.js site:
+Confirm structured data is present and correct. Do NOT duplicate LocalBusiness,
+Organization, or Review blocks that already exist site-wide.
 
-1. On the root layout or homepage, add LocalBusiness schema (type
-   "HealthAndBeautyBusiness" or more specific if a better type fits Pilates/sports
-   therapy) with:
-   - name: "Keystone Sports Therapy"
-   - address: 71 Castlegate, Grantham, NG31 6SQ, GB
-   - telephone: +447432555508
-   - email: hello@kstherapyclinic.com
-   - url: https://www.kstherapyclinic.com
-   - sameAs: Facebook and Instagram URLs already present in the footer
-   - priceRange: "££"
-   - image: the existing og-image
-   Leave a TODO comment for me to fill in exact opening hours and geo coordinates.
+Already implemented (do not recreate):
+- LocalBusinessJsonLd + OrganizationJsonLd in app/layout.tsx
+- AggregateRating on LocalBusiness (3 real Google reviews from lib/reviews.ts)
+- ReviewsJsonLd on homepage and /reviews (references LocalBusiness by @id)
+- FaqJsonLd + PilatesServicesJsonLd + WebPageJsonLd on /pilates-grantham
+- ArticleJsonLd + FaqJsonLd (+ HowTo on first-class post) on blog posts
 
-2. On /pilates-grantham, add Service schema for "Reformer Pilates" and "Mat Pilates"
-   nested under or referencing the LocalBusiness, including the pricing already
-   shown on the page (£65 1:1, £20 group class, etc.) using the `offers` property.
+Only add or fix if missing:
+1. On /pilates-grantham, confirm FAQPage JSON-LD matches the visible FAQ content
+   exactly (same questions/answers). Add FaqJsonLd only if it is absent.
+2. Opening hours on LocalBusiness — TODO in components/json-ld.tsx once hours
+   are confirmed.
+3. Validate all JSON-LD at https://search.google.com/test/rich-results after deploy.
 
-3. Wrap the existing FAQ content on /pilates-grantham in FAQPage schema, using the
-   exact questions and answers already on the page — do not invent new Q&A content.
-
-4. If a /reviews page exists with real testimonials, add Review/AggregateRating
-   schema sourced from that page's content — do not fabricate ratings or review
-   counts; if real aggregate numbers aren't available in the codebase, skip
-   AggregateRating and leave a TODO for me to supply real numbers from Google.
-
-Validate the JSON-LD is syntactically correct and test-renderable (e.g. via
-Google's Rich Results Test format) before finishing.
+Do not add a second LocalBusiness, Organization, or duplicate AggregateRating
+graph node — that can confuse which entity Google treats as canonical.
 ```
 
 ---

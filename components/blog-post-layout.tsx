@@ -2,7 +2,7 @@ import type React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArticleJsonLd, FaqJsonLd, HowToJsonLd } from "@/components/json-ld"
-import { getBlogPostUrl, type BlogPost } from "@/lib/blog-posts"
+import { getBlogPostUrl, type BlogPost, type BlogThumbnail } from "@/lib/blog-posts"
 
 type BlogPostLayoutProps = {
   post: BlogPost
@@ -46,6 +46,20 @@ export function BlogLink({ href, children }: { href: string; children: React.Rea
   )
 }
 
+function BlogPostThumbnail({ thumbnail }: { thumbnail: BlogThumbnail }) {
+  return (
+    <div className="mb-8 overflow-hidden rounded-lg bg-gray-100">
+      <img
+        src={thumbnail.src}
+        alt={thumbnail.alt}
+        width={thumbnail.width}
+        height={thumbnail.height}
+        className="w-full h-auto object-cover object-center"
+      />
+    </div>
+  )
+}
+
 export default function BlogPostLayout({ post, intro, children, cta }: BlogPostLayoutProps) {
   const url = getBlogPostUrl(post.slug)
 
@@ -79,6 +93,8 @@ export default function BlogPostLayout({ post, intro, children, cta }: BlogPostL
                 year: "numeric",
               })}
             </p>
+
+            {post.thumbnail ? <BlogPostThumbnail thumbnail={post.thumbnail} /> : null}
 
             <div className="bg-teal-50 border border-teal-100 rounded-lg p-5 mb-8">
               <p className="text-sm font-medium text-gray-900 mb-1">Quick answer</p>
