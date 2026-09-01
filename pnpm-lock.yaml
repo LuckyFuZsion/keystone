@@ -150,7 +150,7 @@ importers:
         specifier: ^19
         version: 19.1.0(react@19.1.0)
       react-google-recaptcha-v3:
-        specifier: latest
+        specifier: ^1.11.0
         version: 1.11.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-hook-form:
         specifier: latest
