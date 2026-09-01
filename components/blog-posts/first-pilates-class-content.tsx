@@ -1,4 +1,4 @@
-import BlogPostLayout, { BlogH2, BlogLi, BlogLink, BlogOl, BlogP, BlogUl } from "@/components/blog-post-layout"
+import BlogPostLayout, { BlogExternalLink, BlogH2, BlogLi, BlogLink, BlogOl, BlogP, BlogUl } from "@/components/blog-post-layout"
 import { getBlogPost } from "@/lib/blog-posts"
 
 const post = getBlogPost("first-pilates-class")
@@ -95,7 +95,13 @@ export default function FirstPilatesClassContent() {
       </BlogUl>
       <BlogP>
         In a small group setting (our Reformer classes are limited to five people), you get real attention rather than
-        being lost in a crowd, which matters most in your first few sessions.
+        being lost in a crowd, which matters most in your first few sessions. If you&apos;ve been inactive for a while or
+        have a medical condition, the{" "}
+        <BlogExternalLink href="https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/">
+          NHS&apos;s physical activity guidelines
+        </BlogExternalLink>{" "}
+        recommend a quick check with your GP first, and it&apos;s worth mentioning this to your instructor too so your
+        first class can be paced accordingly.
       </BlogP>
 
       <BlogH2 id="will-it-be-hard">Will it be hard?</BlogH2>

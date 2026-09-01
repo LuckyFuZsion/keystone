@@ -46,6 +46,14 @@ export function BlogLink({ href, children }: { href: string; children: React.Rea
   )
 }
 
+export function BlogExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a href={href} className="text-teal-700 hover:underline" target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  )
+}
+
 function BlogPostThumbnail({ thumbnail }: { thumbnail: BlogThumbnail }) {
   return (
     <div className="mb-8 overflow-hidden rounded-lg bg-gray-100">

@@ -1,4 +1,4 @@
-import BlogPostLayout, { BlogH2, BlogLi, BlogLink, BlogP, BlogUl } from "@/components/blog-post-layout"
+import BlogPostLayout, { BlogExternalLink, BlogH2, BlogLi, BlogLink, BlogP, BlogUl } from "@/components/blog-post-layout"
 import { getBlogPost } from "@/lib/blog-posts"
 
 const post = getBlogPost("reformer-vs-mat-pilates")
@@ -41,9 +41,13 @@ export default function ReformerVsMatContent() {
       </BlogP>
       <BlogP>
         This makes it possible to fine-tune intensity precisely for each person and each exercise, which is one reason
-        Reformer Pilates is widely used in clinical and rehabilitation settings, not just fitness studios. At our Grantham
-        clinic, sessions use <BlogLink href="/pilates-grantham">Align Pilates equipment</BlogLink>, taught by an
-        APPI-qualified instructor.
+        Reformer Pilates is widely used in clinical and rehabilitation settings, not just fitness studios. The{" "}
+        <BlogExternalLink href="https://www.csp.org.uk/category/physio2u-categories/pilates">
+          Chartered Society of Physiotherapy
+        </BlogExternalLink>{" "}
+        notes that many of its members use Pilates as part of rehabilitation programmes for exactly this reason. At our
+        Grantham clinic, sessions use <BlogLink href="/pilates-grantham">Align Pilates equipment</BlogLink>, taught by an{" "}
+        <BlogExternalLink href="https://appihealthgroup.com/about/about-us/">APPI-qualified</BlogExternalLink> instructor.
       </BlogP>
 
       <BlogH2 id="key-differences-at-a-glance">Key differences at a glance</BlogH2>
